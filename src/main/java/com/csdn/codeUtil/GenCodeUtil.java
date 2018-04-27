@@ -115,7 +115,8 @@ public class GenCodeUtil {
             sb.append("package "+packagePath+";\n\n");
         }
         String businessPackage = packagePath.substring(0, packagePath.lastIndexOf("."));
-        String basePackage = businessPackage.substring(0, businessPackage.lastIndexOf("."));
+        @SuppressWarnings("unused")
+		String basePackage = businessPackage.substring(0, businessPackage.lastIndexOf("."));
         sb.append("import "+extendsBasePackage+".dao.GenericDao;\n\n");
         sb.append("import "+businessPackage+".entity."+beanName+";\n");
         sb.append("import "+businessPackage+".entity."+queryModelName+";\n\n");
@@ -346,12 +347,12 @@ public class GenCodeUtil {
         fos.close();
     }
 
-    /**
-     * @param args
-     * @throws IOException
-     */
-    public static void main(String[] args) throws IOException {
-        genFiles("linzf", "dict", "com.csdn.demo.common.base","com.csdn.demo.sys", "/resources/mybatis/mapper","Dict", "QueryDict", "application-dev.properties");
-    }
+//    /**
+//     * @param args
+//     * @throws IOException
+//     */
+//    public static void main(String[] args) throws IOException {
+//        genFiles("linzf", "dict", "com.csdn.demo.common.base","com.csdn.demo.sys", "/resources/mybatis/mapper","Dict", "QueryDict", "application-dev.properties");
+//    }
 
 }

@@ -69,5 +69,7 @@ public class RoleController extends GenericController<UserRole,QueryUserRole> {
         result.put("data",treeMapper.treesToTressDTOs(treeList));
         return result;
     }
+    
+    
 
 }

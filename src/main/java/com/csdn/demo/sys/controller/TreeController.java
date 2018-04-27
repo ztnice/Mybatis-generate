@@ -80,7 +80,8 @@ public class TreeController extends GenericController<Tree,QueryTree> {
             entity = treeService.get(entity);
         }
         model.addAttribute("entity",entity);
-        return getPageBaseRoot()+ADDPAGE;
+        String page=getPageBaseRoot()+ADDPAGE;
+        return page;
     }
 
     /**

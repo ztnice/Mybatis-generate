@@ -1,13 +1,17 @@
 package com.csdn.demo;
 
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
-
-public class ServletInitializer extends SpringBootServletInitializer {
-
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(CsdndemoApplication.class);
-	}
+/**
+ * 其实没什么用
+ * @author Administrator
+ *
+ */
+public class ServletInitializer {
+	/*
+	 * extends SpringBootServletInitializer {
+	 * 
+	 * @Override protected SpringApplicationBuilder
+	 * configure(SpringApplicationBuilder application) { return
+	 * application.sources(CsdndemoApplication.class); }
+	 */
 
 }

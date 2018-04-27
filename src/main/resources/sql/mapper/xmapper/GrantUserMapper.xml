@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sql.mapper.i.GrantUserMapper">
+	<resultMap id="BaseResultMap" type="sql.pojo.GrantUser">
+		<id column="USER_ID" jdbcType="DECIMAL" property="userId" />
+		<result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		USER_ID, USER_NAME
+	</sql>
+	<!-- 根据用户名搜索 -->
+	<select id="selectByUserName" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from GRANTUSER
+		where USER_NAME = #{userName,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from GRANTUSER
+		where USER_ID = #{userId,jdbcType=DECIMAL}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from GRANTUSER
+		where USER_ID = #{userId,jdbcType=DECIMAL}
+	</delete>
+	<insert id="insert" parameterType="sql.pojo.GrantUser">
+		insert into GRANTUSER (USER_ID, USER_NAME)
+		values (#{userId,jdbcType=DECIMAL}, #{userName,jdbcType=VARCHAR})
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="sql.pojo.GrantUser">
+		update GRANTUSER
+		set USER_NAME = #{userName,jdbcType=VARCHAR}
+		where USER_ID = #{userId,jdbcType=DECIMAL}
+	</update>
+</mapper>

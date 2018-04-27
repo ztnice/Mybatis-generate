@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sql.mapper.i.UserAuthorizationMapper">
+  <resultMap id="BaseResultMap" type="sql.pojo.UserAuthorization">
+    <id column="AUTHORIZATION_ID" jdbcType="DECIMAL" property="authorizationId" />
+    <result column="AUTHORIZATION" jdbcType="DECIMAL" property="authorization" />
+    <result column="AUTHORIZATION_NAME" jdbcType="VARCHAR" property="authorizationName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    AUTHORIZATION_ID, AUTHORIZATION, AUTHORIZATION_NAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Short" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from USERAUTHORIZATION
+    where AUTHORIZATION_ID = #{authorizationId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short">
+    delete from USERAUTHORIZATION
+    where AUTHORIZATION_ID = #{authorizationId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="sql.pojo.UserAuthorization">
+    insert into USERAUTHORIZATION (AUTHORIZATION_ID, AUTHORIZATION, AUTHORIZATION_NAME
+      )
+    values (#{authorizationId,jdbcType=DECIMAL}, #{authorization,jdbcType=DECIMAL}, #{authorizationName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <select id="selectAllByOrder" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from USERAUTHORIZATION ORDER BY AUTHORIZATION 
+  </select>
+  <update id="updateByPrimaryKey" parameterType="sql.pojo.UserAuthorization">
+    update USERAUTHORIZATION
+    set AUTHORIZATION = #{authorization,jdbcType=DECIMAL},
+      AUTHORIZATION_NAME = #{authorizationName,jdbcType=VARCHAR}
+    where AUTHORIZATION_ID = #{authorizationId,jdbcType=DECIMAL}
+  </update>
+  
+</mapper>

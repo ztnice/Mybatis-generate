@@ -58,7 +58,7 @@ public class UserInfo {
 		if (null == attributes) {
 			return null;
 		} else {
-			HttpServletRequest request = ((ServletRequestAttributes)attributes).getRequest();
+			HttpServletRequest request = ((ServletRequestAttributes) attributes).getRequest();
 			SecurityContextImpl securityContextImpl = (SecurityContextImpl) request.getSession()
 					.getAttribute("SPRING_SECURITY_CONTEXT");
 			return (User) Optional.ofNullable(securityContextImpl.getAuthentication().getPrincipal()).orElse(null);

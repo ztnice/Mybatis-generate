@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sql.mapper.i.HzConfigureCommonMapper">
+	<resultMap id="BaseResultMap"
+		type="sql.pojo.HzConfigureCommon">
+		<id column="GRPREV" jdbcType="VARCHAR" property="GrpRev" />
+		<result column="FAMREV" jdbcType="VARCHAR" property="FamRev" />
+		<result column="VALREV" jdbcType="VARCHAR" property="ValRev" />
+		<result column="GACONTEXT" jdbcType="VARCHAR"
+			property="GaContext" />
+		<result column="SEARCHMODELFAMILY__0" jdbcType="VARCHAR"
+			property="SearchModelFamily__0" />
+		<result column="MODEL__2" jdbcType="VARCHAR"
+			property="Model__2" />
+		<result column="VARIANTRULE_4" jdbcType="VARCHAR"
+			property="VariantRule_4" />
+		<result column="POBJECT_NAME" jdbcType="VARCHAR"
+			property="pobject_name" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		GRPREV,FAMREV,GACONTEXT
+	</sql>
+	<sql id="Column_With_ValueRev">
+		VALREV,FAMREV
+	</sql>
+	<sql id="Column_With_Mode_Cfg">
+		VARIANTRULE_4,POBJECT_NAME
+	</sql>
+	<sql id="Column_With_Mode">
+		SEARCHMODELFAMILY__0,MODEL__2
+	</sql>
+	<!-- 根据配置器的item的puid获取到下级配置项，非车型模型配置项 -->
+	<select id="selectLvl2FromItem"
+		parameterType="sql.pojo.HzConfigureCommon" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from infodba.getcfglvl1 t where
+		infodba.p_view_param.set_param(#{GaContext,jdbcType=VARCHAR})=#{GaContext,jdbcType=VARCHAR}
+	</select>
+	<!-- 根据配置族获取下级配置值 ，与bom相关了 -->
+	<select id="selectLvl3FromLvl2"
+		parameterType="sql.pojo.HzConfigureCommon" resultMap="BaseResultMap">
+		select
+		<include refid="Column_With_ValueRev" />
+		from infodba.cfglvl3 where
+		infodba.p_view_param.set_param(#{FamRev,jdbcType=VARCHAR})=#{FamRev,jdbcType=VARCHAR}
+		and
+		infodba.p_view_param.set_parent(#{GaContext,jdbcType=VARCHAR})=#{GaContext,jdbcType=VARCHAR}
+	</select>
+	<select id="selectModelCfgByItemPuid"
+		parameterType="sql.pojo.HzConfigureCommon" resultMap="BaseResultMap">
+		select
+		<include refid="Column_With_Mode_Cfg" />
+		from
+		infodba.get_model_cfg_by_item_puid
+		t3 where
+		infodba.p_view_param.set_param(#{GaContext,jdbcType=VARCHAR})=#{GaContext,jdbcType=VARCHAR}
+	</select>
+	<select id="selectModelByItemId"
+		parameterType="sql.pojo.HzConfigureCommon" resultMap="BaseResultMap">
+		select
+		<include refid="Column_With_Mode" />
+		from
+		infodba.get_model_by_item_id v
+		where
+		infodba.p_view_param.set_param(#{item_id,jdbcType=VARCHAR})=#{item_id,jdbcType=VARCHAR}
+	</select>
+</mapper>

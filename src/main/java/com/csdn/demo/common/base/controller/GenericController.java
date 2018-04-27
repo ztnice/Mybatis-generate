@@ -1,22 +1,23 @@
 package com.csdn.demo.common.base.controller;
 
-import com.csdn.demo.common.base.constant.SystemStaticConst;
-import com.csdn.demo.common.base.entity.Page;
-import com.csdn.demo.common.base.entity.QueryBase;
-import com.csdn.demo.common.base.service.GenericService;
-import com.csdn.demo.common.util.json.JsonHelper;
-import org.springframework.http.MediaType;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.lang.reflect.ParameterizedType;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.springframework.http.MediaType;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.csdn.demo.common.base.constant.SystemStaticConst;
+import com.csdn.demo.common.base.entity.Page;
+import com.csdn.demo.common.base.entity.QueryBase;
+import com.csdn.demo.common.base.service.GenericService;
+import com.csdn.demo.common.util.json.JsonHelper;
 
 
 public abstract class GenericController<T, Q extends QueryBase> {
@@ -36,7 +37,7 @@ public abstract class GenericController<T, Q extends QueryBase> {
 
 	/**抽象方法，获取页面基路径
 	 * @throws Exception */
-	protected String getPageBaseRoot() throws Exception{
+	public String getPageBaseRoot() throws Exception{
 		if(basePath==null){
 			basePath = this.getClass().getName();
 			Pattern p=Pattern.compile(".[a-z|A-z]+.controller.[a-z|A-z]+Controller");
@@ -52,6 +53,7 @@ public abstract class GenericController<T, Q extends QueryBase> {
 				throw new Exception("获取页面基路径失败");
 			}
 		}
+		
 		return basePath;
 	}
 

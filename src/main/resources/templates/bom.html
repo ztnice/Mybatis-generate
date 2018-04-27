@@ -1,0 +1,73 @@
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:include="include/ofBom">
+<meta charset="UTF-8">
+<title>BOM视图</title>
+<link th:href="@{/css/stage/bom-stage.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="panel-body">
+		<h1>bom视图，开始载入bom.....</h1>
+		<input id="text1" type="text" name="doSubmit1"
+			placeholder="请输入需要查找的bom">
+		<button id="doSubmit1">查询</button>
+		<button id="doSubmit3" type="button">doSubmit3</button>
+		<button id="doSubmit" type="button">doSubmit</button>
+		<div class="content" id="content" ></div>
+	</div>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel">操作错误</h4>
+				</div>
+				<div class="modal-body">用户名或密码不能为空</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+					</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal // 				  data: JSON.stringify({"bdf":"bdf"}),
+// 				  dataType: 'json',-->
+</body>
+<script type="text/javascript">
+$(document).ready(
+		$("#doSubmit1").click(function() {
+			var x=$("#text1").val();
+			$.ajax({
+				  type: 'GET',
+				  url: '/loadBom/loadByID',
+				  contentType: "application/json",  
+		          dataType: "json",
+				  data:{"bdf":JSON.stringify(x)},
+				  success: function(result){
+					  $("#content").append(result);
+				  },
+				 error:function(result){
+					 $("#content").html(JSON.stringify(result));
+					 alert("发生错误");
+				 },
+				}
+			);
+			}
+		),
+		$("#doSubmit3").click(function() {
+			alert('doSubmit3');
+			}
+		),
+		$("#doSubmit").click(function() {
+			$("#myModal").modal('show');
+			}
+		),
+);
+</script>
+
+</html>

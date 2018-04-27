@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sql.mapper.i.HzBom2YEntityMapper">
+	<resultMap id="BaseResultMap" type="sql.pojo.HzBom2YEntity">
+		<id column="PUID" jdbcType="VARCHAR" property="puid" />
+		<result column="P_BOM_DIGIFAX_ID" jdbcType="VARCHAR" property="pBomDigifaxId" />
+		<result column="P_LINE_INDEX" jdbcType="VARCHAR" property="pLineIndex" />
+		<result column="P_BOM_LINE_IS_HAS" jdbcType="DECIMAL" property="pBomLineIsHas" />
+		<result column="P_BOM_LINE_PUID" jdbcType="VARCHAR" property="pBomLinePuid" />
+		<result column="P_BOM_LINE_NAME" jdbcType="VARCHAR" property="pBomLineName" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="sql.pojo.HzBom2YEntity">
+		<result column="P_BOM_LINE_BLOCK" jdbcType="BLOB" property="pBomLineBlock" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		PUID, P_BOM_DIGIFAX_ID, P_LINE_INDEX, P_BOM_LINE_IS_HAS, P_BOM_LINE_PUID, P_BOM_LINE_NAME
+	</sql>
+	<sql id="Blob_Column_List">P_BOM_LINE_BLOCK</sql>
+	<sql id="values_with_blob">
+		#{puid,jdbcType=VARCHAR}, #{pBomDigifaxId,jdbcType=VARCHAR}, #{pLineIndex,jdbcType=VARCHAR},
+		#{pBomLineIsHas,jdbcType=DECIMAL}, #{pBomLinePuid,jdbcType=VARCHAR}, #{pBomLineName,jdbcType=VARCHAR},
+		#{pBomLineBlock,jdbcType=BLOB}
+	</sql>
+	<sql id="values_with_blob_with_item">
+		#{item.puid,jdbcType=VARCHAR}, #{item.pBomDigifaxId,jdbcType=VARCHAR}, #{item.pLineIndex,jdbcType=VARCHAR},
+		#{item.pBomLineIsHas,jdbcType=DECIMAL}, #{item.pBomLinePuid,jdbcType=VARCHAR}, #{item.pBomLineName,jdbcType=VARCHAR},
+		#{item.pBomLineBlock,jdbcType=BLOB}
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from HZ_BOM_2Y_RECORD
+    where PUID = #{puid,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">delete from HZ_BOM_2Y_RECORD
+    where PUID = #{puid,jdbcType=VARCHAR}</delete>
+	<insert id="insert" parameterType="sql.pojo.HzBom2YEntity">
+		insert into HZ_BOM_2Y_RECORD (
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		) values (
+		<include refid="values_with_blob" />
+		)
+	</insert>
+	<insert id="insertByBatch" parameterType="java.util.List">
+		insert all
+		<foreach collection="list" item="item" index="index" separator=" ">
+			into HZ_BOM_2Y_RECORD (
+			<include refid="Base_Column_List" />
+			,
+			<include refid="Blob_Column_List" />
+			) values (
+			<include refid="values_with_blob_with_item" />
+			)
+		</foreach>
+		select 1 from dual
+	</insert>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="sql.pojo.HzBom2YEntity">
+		update HZ_BOM_2Y_RECORD set P_BOM_DIGIFAX_ID = #{pBomDigifaxId,jdbcType=VARCHAR},
+		P_LINE_INDEX = #{pLineIndex,jdbcType=VARCHAR}, P_BOM_LINE_IS_HAS = #{pBomLineIsHas,jdbcType=DECIMAL},
+		P_BOM_LINE_PUID = #{pBomLinePuid,jdbcType=VARCHAR}, P_BOM_LINE_NAME = #{pBomLineName,jdbcType=VARCHAR},
+		P_BOM_LINE_BLOCK = #{pBomLineBlock,jdbcType=BLOB} where PUID = #{puid,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="sql.pojo.HzBom2YEntity">
+		update HZ_BOM_2Y_RECORD set P_BOM_DIGIFAX_ID = #{pBomDigifaxId,jdbcType=VARCHAR},
+		P_LINE_INDEX = #{pLineIndex,jdbcType=VARCHAR}, P_BOM_LINE_IS_HAS = #{pBomLineIsHas,jdbcType=DECIMAL},
+		P_BOM_LINE_PUID = #{pBomLinePuid,jdbcType=VARCHAR}, P_BOM_LINE_NAME = #{pBomLineName,jdbcType=VARCHAR}
+		where PUID = #{puid,jdbcType=VARCHAR}
+	</update>
+</mapper>

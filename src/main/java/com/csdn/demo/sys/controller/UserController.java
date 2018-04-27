@@ -42,7 +42,8 @@ public class UserController extends GenericController<User,QueryUser> {
     private TreeService treeService;
     @Inject
     private UserRoleService userRoleService;
-    @Inject
+    @SuppressWarnings("unused")
+	@Inject
     private UserAssociateRoleService userAssociateRoleService;
 
     @Override
@@ -96,7 +97,8 @@ public class UserController extends GenericController<User,QueryUser> {
         entity = getService().get(entity);
         entity.setRoleArray(JsonHelper.list2json( Optional.ofNullable(userService.findByLogin(entity.getLogin())).filter(u->u!=null).orElse(new User()).getRoles()));
         model.addAttribute("entity",entity);
-        return getPageBaseRoot()+UPDATEPAGE;
+        String path=getPageBaseRoot()+UPDATEPAGE;
+        return path;
     }
 
     /**
