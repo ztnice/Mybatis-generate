@@ -50,7 +50,7 @@ $(document).ready(
 					  var x=JSON.stringify(result);
 					  var y=JSON.parse(x);
 					  for (var i = 0; i < y.length; i++) {
-						  $("#content").append(y[i]+"<br/>");
+						  $("#content").append("index:"+y[i].index+"---bdf:"+y[i].index+"---on:"+y[i].on+"---puid:"+y[i].puid+"<br/>");
 					}
 				  },
 				 error:function(result){
