@@ -45,9 +45,13 @@ $(document).ready(
 			$.ajax({
 				  type: 'GET',
 				  url: '/loadBom/loadByID',
-				  data:{"bdf":JSON.stringify(x)},
+				  data:{"bdf":x},
 				  success: function(result){
-					  $("#content").append(result);
+					  var x=JSON.stringify(result);
+					  var y=JSON.parse(x);
+					  for (var i = 0; i < y.length; i++) {
+						  $("#content").append(y[i]+"<br/>");
+					}
 				  },
 				 error:function(result){
 					 $("#content").html(JSON.stringify(result));
@@ -76,8 +80,24 @@ $(document).ready(
 			}
 		),
 		$("#doSubmit").click(function() {
-			$("#myModal").modal('show');
-			}
+// 			
+// 			
+			var x=$("#text1").val();
+			$.ajax({
+				  type: 'GET',
+				  url: '/loadBom/loadByID3',
+				  success: function(result){
+					  //追加到尾部文档
+// 					  $("#content").append(result);
+					  $("#myModal").modal('show');
+				  },
+				 error:function(result){
+					 $("#content").html(JSON.stringify(result));
+					 alert("发生错误");
+				 },
+				}
+			);
+		}
 		),
 );
 </script>
