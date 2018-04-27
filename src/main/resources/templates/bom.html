@@ -14,7 +14,7 @@
 		<button id="doSubmit1">查询</button>
 		<button id="doSubmit3" type="button">doSubmit3</button>
 		<button id="doSubmit" type="button">doSubmit</button>
-		<div class="content" id="content" ></div>
+		<div class="content" id="content"></div>
 	</div>
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
@@ -45,8 +45,6 @@ $(document).ready(
 			$.ajax({
 				  type: 'GET',
 				  url: '/loadBom/loadByID',
-				  contentType: "application/json",  
-		          dataType: "json",
 				  data:{"bdf":JSON.stringify(x)},
 				  success: function(result){
 					  $("#content").append(result);
@@ -60,7 +58,21 @@ $(document).ready(
 			}
 		),
 		$("#doSubmit3").click(function() {
-			alert('doSubmit3');
+			var x=$("#text1").val();
+			$.ajax({
+				  type: 'GET',
+				  url: '/loadBom/loadByID2',
+				  contentType: "application/json",  
+				  data:{"bdf":JSON.stringify(x)},
+				  success: function(result){
+					  $("#content").html(JSON.stringify(result));
+				  },
+				 error:function(result){
+					 $("#content").html(JSON.stringify(result));
+					 alert("发生错误");
+				 },
+				}
+			);
 			}
 		),
 		$("#doSubmit").click(function() {
