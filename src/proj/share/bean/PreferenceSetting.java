@@ -8,13 +8,15 @@ public class PreferenceSetting implements Serializable {
 	 */
 	private static final long serialVersionUID = -8988011687523006271L;
 	/**
-	 * ��ѡ���
+	 * 首选项集合
 	 */
 	private String[] preferences;
 	/**
-	 * ��ѡ����
+	 * 首选项名
 	 */
 	private String preferenceName;
+	/** 本地化名 */
+	private String[] preferenceLocal;
 
 	public PreferenceSetting() {
 	}
@@ -33,6 +35,14 @@ public class PreferenceSetting implements Serializable {
 
 	public void setPreferenceName(String preferenceName) {
 		this.preferenceName = preferenceName;
+	}
+
+	public String[] getPreferenceLocal() {
+		return preferenceLocal;
+	}
+
+	public void setPreferenceLocal(String[] preferenceLocal) {
+		this.preferenceLocal = preferenceLocal;
 	}
 
 }

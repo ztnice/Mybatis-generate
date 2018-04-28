@@ -4,18 +4,19 @@ import sql.pojo.HzPreferenceSetting;
 
 public interface HzPreferenceSettingMapper {
 
-    int deleteByPrimaryKey(Long puid);
+	int deleteByPrimaryKey(Long puid);
 
-    int insert(HzPreferenceSetting record);
+	int insert(HzPreferenceSetting record);
 
-    int insertSelective(HzPreferenceSetting record);
+	int insertSelective(HzPreferenceSetting record);
 
+	HzPreferenceSetting selectByPrimaryKey(Long puid);
 
-    HzPreferenceSetting selectByPrimaryKey(Long puid);
+	HzPreferenceSetting selectSettingByNameWithMainRecord(HzPreferenceSetting puid);
 
-    int updateByPrimaryKeySelective(HzPreferenceSetting record);
+	int updateByPrimaryKeySelective(HzPreferenceSetting record);
 
-    int updateByPrimaryKeyWithBLOBs(HzPreferenceSetting record);
+	int updateByPrimaryKeyWithBLOBs(HzPreferenceSetting record);
 
-    int updateByPrimaryKey(HzPreferenceSetting record);
+	int updateByPrimaryKey(HzPreferenceSetting record);
 }

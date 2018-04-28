@@ -3,18 +3,22 @@
 <head th:include="include/ofBom">
 <meta charset="UTF-8">
 <title>BOM视图</title>
-<link th:href="@{/css/stage/bom-stage.css}" rel="stylesheet" />
 </head>
 
-<body>
+<body class="content-body">
 	<div class="panel-body">
-		<h1>bom视图，开始载入bom.....</h1>
-		<input id="text1" type="text" name="doSubmit1"
-			placeholder="请输入需要查找的bom">
-		<button id="doSubmit1">查询</button>
-		<button id="doSubmit3" type="button">doSubmit3</button>
-		<button id="doSubmit" type="button">doSubmit</button>
-		<div class="content" id="content"></div>
+		<div class="col-lg-2">
+			<span class="infoToUser">请输入需要查询的bom数模行ID</span>
+			<div class="input-group">
+				<input id="text1" class="form-control" type="text" name="doSubmit1"
+					placeholder="请输入需要查找的bom"
+					value="d050cb5e-2f54-4782-92dc-6cf750e0b066"> <span
+					class="input-group-btn">
+					<button class="btn btn-default" id="doSubmit1" type="button">查询</button>
+				</span>
+			</div>
+		</div>
+		<div class="content col-lg-12" id="content"></div>
 	</div>
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
@@ -25,81 +29,15 @@
 						aria-hidden="true">×</button>
 					<h4 class="modal-title" id="myModalLabel">操作错误</h4>
 				</div>
-				<div class="modal-body">用户名或密码不能为空</div>
+				<div class="modal-body">请输入正确的数模层ID</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
 					</button>
 				</div>
 			</div>
-			<!-- /.modal-content -->
 		</div>
-		<!-- /.modal-dialog -->
 	</div>
-	<!-- /.modal // 				  data: JSON.stringify({"bdf":"bdf"}),
-// 				  dataType: 'json',-->
+	<script th:src="@{/js/stage/bom-stage.js}"></script>
 </body>
-<script type="text/javascript">
-$(document).ready(
-		$("#doSubmit1").click(function() {
-			var x=$("#text1").val();
-			$.ajax({
-				  type: 'GET',
-				  url: '/loadBom/loadByID',
-				  data:{"bdf":x},
-				  success: function(result){
-					  var x=JSON.stringify(result);
-					  var y=JSON.parse(x);
-					  for (var i = 0; i < y.length; i++) {
-						  $("#content").append("index:"+y[i].index+"---bdf:"+y[i].index+"---on:"+y[i].on+"---puid:"+y[i].puid+"<br/>");
-					}
-				  },
-				 error:function(result){
-					 $("#content").html(JSON.stringify(result));
-					 alert("发生错误");
-				 },
-				}
-			);
-			}
-		),
-		$("#doSubmit3").click(function() {
-			var x=$("#text1").val();
-			$.ajax({
-				  type: 'GET',
-				  url: '/loadBom/loadByID2',
-				  contentType: "application/json",  
-				  data:{"bdf":JSON.stringify(x)},
-				  success: function(result){
-					  $("#content").html(JSON.stringify(result));
-				  },
-				 error:function(result){
-					 $("#content").html(JSON.stringify(result));
-					 alert("发生错误");
-				 },
-				}
-			);
-			}
-		),
-		$("#doSubmit").click(function() {
-// 			
-// 			
-			var x=$("#text1").val();
-			$.ajax({
-				  type: 'GET',
-				  url: '/loadBom/loadByID3',
-				  success: function(result){
-					  //追加到尾部文档
-// 					  $("#content").append(result);
-					  $("#myModal").modal('show');
-				  },
-				 error:function(result){
-					 $("#content").html(JSON.stringify(result));
-					 alert("发生错误");
-				 },
-				}
-			);
-		}
-		),
-);
-</script>
 
 </html>

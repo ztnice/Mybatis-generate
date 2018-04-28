@@ -9,15 +9,15 @@ import java.sql.ResultSet;
 import java.util.Properties;
 
 public class SQLHelper {
-	Connection con = null;// ´´½¨Ò»¸öÊý¾Ý¿âÁ¬½Ó
-	PreparedStatement pre = null;// ´´½¨Ô¤±àÒëÓï¾ä¶ÔÏó£¬Ò»°ã¶¼ÊÇÓÃÕâ¸ö¶ø²»ÓÃStatement
-	ResultSet result = null;// ´´½¨Ò»¸ö½á¹û¼¯¶ÔÏó
+	Connection con = null;// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½
+	PreparedStatement pre = null;// ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ã¶¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Statement
+	ResultSet result = null;// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private static Properties properties;
 	private final static String filePath = "resource.properties";
 
 	static {
 		try {
-			// ¼ÓÔØOracleÇý¶¯³ÌÐò
+			// ï¿½ï¿½ï¿½ï¿½Oracleï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -28,7 +28,7 @@ public class SQLHelper {
 		defaultLoader();
 	}
 
-	/** Ä¬ÈÏÊôÐÔÎÄ¼þ */
+	/** Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ */
 	private boolean defaultLoader() throws IOException {
 		properties = new Properties();
 		InputStream in = null;
@@ -48,21 +48,21 @@ public class SQLHelper {
 
 	public void executeQuery(String sql, String[] values, String[] keywords) {
 		try {
-			System.out.println("¿ªÊ¼³¢ÊÔÁ¬½ÓÊý¾Ý¿â£¡");
-			String url = properties.getProperty("DB_ADDRESS");// 127.0.0.1ÊÇ±¾»úµØÖ·£¬XEÊÇ¾«¼ò°æOracleµÄÄ¬ÈÏÊý¾Ý¿âÃû
-			String user = properties.getProperty("DB_USERNAME");// ÓÃ»§Ãû,ÏµÍ³Ä¬ÈÏµÄÕË»§Ãû
-			String password = properties.getProperty("DB_PASSWORD");// Äã°²×°Ê±Ñ¡ÉèÖÃµÄÃÜÂë
-			con = DriverManager.getConnection(url, user, password);// »ñÈ¡Á¬½Ó
-			System.out.println("Á¬½Ó³É¹¦£¡");
-			// String sql = ;// Ô¤±àÒëÓï¾ä£¬¡°£¿¡±´ú±í²ÎÊý
-			pre = con.prepareStatement(sql);// ÊµÀý»¯Ô¤±àÒëÓï¾ä
+			System.out.println("ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿â£¡");
+			String url = properties.getProperty("DB_ADDRESS");// 127.0.0.1ï¿½Ç±ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½XEï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Oracleï¿½ï¿½Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½
+			String user = properties.getProperty("DB_USERNAME");// ï¿½Ã»ï¿½ï¿½ï¿½,ÏµÍ³Ä¬ï¿½Ïµï¿½ï¿½Ë»ï¿½ï¿½ï¿½
+			String password = properties.getProperty("DB_PASSWORD");// ï¿½ã°²×°Ê±Ñ¡ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½
+			con = DriverManager.getConnection(url, user, password);// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+			System.out.println("ï¿½ï¿½ï¿½Ó³É¹ï¿½ï¿½ï¿½");
+			// String sql = ;// Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			pre = con.prepareStatement(sql);// Êµï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			for (int i = 0; i < values.length; i++) {
-				pre.setString(i + 1, String.valueOf(values[i]));// ÉèÖÃ²ÎÊý£¬Ç°ÃæµÄ1±íÊ¾²ÎÊýµÄË÷Òý£¬¶ø²»ÊÇ±íÖÐÁÐÃûµÄË÷Òý
+				pre.setString(i + 1, String.valueOf(values[i]));// ï¿½ï¿½ï¿½Ã²ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½1ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			}
 			System.out.println(pre.toString());
-			result = pre.executeQuery();// Ö´ÐÐ²éÑ¯£¬×¢ÒâÀ¨ºÅÖÐ²»ÐèÒªÔÙ¼Ó²ÎÊý
+			result = pre.executeQuery();// Ö´ï¿½Ð²ï¿½Ñ¯ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½Òªï¿½Ù¼Ó²ï¿½ï¿½ï¿½
 			while (result.next()) {
-				// µ±½á¹û¼¯²»Îª¿ÕÊ±
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ê±
 				StringBuilder builder = new StringBuilder();
 
 				for (int i = 0; i < keywords.length; i++) {
@@ -74,15 +74,15 @@ public class SQLHelper {
 			e.printStackTrace();
 		} finally {
 			try {
-				// ÖðÒ»½«ÉÏÃæµÄ¼¸¸ö¶ÔÏó¹Ø±Õ£¬ÒòÎª²»¹Ø±ÕµÄ»°»áÓ°ÏìÐÔÄÜ¡¢²¢ÇÒÕ¼ÓÃ×ÊÔ´
-				// ×¢Òâ¹Ø±ÕµÄË³Ðò£¬×îºóÊ¹ÓÃµÄ×îÏÈ¹Ø±Õ
+				// ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø±Õ£ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½Ø±ÕµÄ»ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½ï¿½Ü¡ï¿½ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½ï¿½ï¿½ï¿½Ô´
+				// ×¢ï¿½ï¿½Ø±Õµï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ãµï¿½ï¿½ï¿½ï¿½È¹Ø±ï¿½
 				if (result != null)
 					result.close();
 				if (pre != null)
 					pre.close();
 				if (con != null)
 					con.close();
-				System.out.println("Êý¾Ý¿âÁ¬½ÓÒÑ¹Ø±Õ£¡");
+				System.out.println("ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¹Ø±Õ£ï¿½");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -92,32 +92,32 @@ public class SQLHelper {
 
 	public void executeInsert(String sql, String[] values) {
 		try {
-			System.out.println("¿ªÊ¼³¢ÊÔÁ¬½ÓÊý¾Ý¿â£¡");
-			String url = properties.getProperty("DB_ADDRESS");// 127.0.0.1ÊÇ±¾»úµØÖ·£¬XEÊÇ¾«¼ò°æOracleµÄÄ¬ÈÏÊý¾Ý¿âÃû
-			String user = properties.getProperty("DB_USERNAME");// ÓÃ»§Ãû,ÏµÍ³Ä¬ÈÏµÄÕË»§Ãû
-			String password = properties.getProperty("DB_PASSWORD");// Äã°²×°Ê±Ñ¡ÉèÖÃµÄÃÜÂë
-			con = DriverManager.getConnection(url, user, password);// »ñÈ¡Á¬½Ó
-			System.out.println("Á¬½Ó³É¹¦£¡");
-			// String sql = ;// Ô¤±àÒëÓï¾ä£¬¡°£¿¡±´ú±í²ÎÊý
-			pre = con.prepareStatement(sql);// ÊµÀý»¯Ô¤±àÒëÓï¾ä
+			System.out.println("ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿â£¡");
+			String url = properties.getProperty("DB_ADDRESS");// 127.0.0.1ï¿½Ç±ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½XEï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Oracleï¿½ï¿½Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½
+			String user = properties.getProperty("DB_USERNAME");// ï¿½Ã»ï¿½ï¿½ï¿½,ÏµÍ³Ä¬ï¿½Ïµï¿½ï¿½Ë»ï¿½ï¿½ï¿½
+			String password = properties.getProperty("DB_PASSWORD");// ï¿½ã°²×°Ê±Ñ¡ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½
+			con = DriverManager.getConnection(url, user, password);// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+			System.out.println("ï¿½ï¿½ï¿½Ó³É¹ï¿½ï¿½ï¿½");
+			// String sql = ;// Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			pre = con.prepareStatement(sql);// Êµï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			for (int i = 0; i < values.length; i++) {
-				pre.setString(i + 1, String.valueOf(values[i]));// ÉèÖÃ²ÎÊý£¬Ç°ÃæµÄ1±íÊ¾²ÎÊýµÄË÷Òý£¬¶ø²»ÊÇ±íÖÐÁÐÃûµÄË÷Òý
+				pre.setString(i + 1, String.valueOf(values[i]));// ï¿½ï¿½ï¿½Ã²ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½1ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			}
 			System.out.println(pre.toString());
-			result = pre.executeQuery();// Ö´ÐÐ²éÑ¯£¬×¢ÒâÀ¨ºÅÖÐ²»ÐèÒªÔÙ¼Ó²ÎÊý
+			result = pre.executeQuery();// Ö´ï¿½Ð²ï¿½Ñ¯ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½Òªï¿½Ù¼Ó²ï¿½ï¿½ï¿½
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				// ÖðÒ»½«ÉÏÃæµÄ¼¸¸ö¶ÔÏó¹Ø±Õ£¬ÒòÎª²»¹Ø±ÕµÄ»°»áÓ°ÏìÐÔÄÜ¡¢²¢ÇÒÕ¼ÓÃ×ÊÔ´
-				// ×¢Òâ¹Ø±ÕµÄË³Ðò£¬×îºóÊ¹ÓÃµÄ×îÏÈ¹Ø±Õ
+				// ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø±Õ£ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½Ø±ÕµÄ»ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½ï¿½Ü¡ï¿½ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½ï¿½ï¿½ï¿½Ô´
+				// ×¢ï¿½ï¿½Ø±Õµï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ãµï¿½ï¿½ï¿½ï¿½È¹Ø±ï¿½
 				if (result != null)
 					result.close();
 				if (pre != null)
 					pre.close();
 				if (con != null)
 					con.close();
-				System.out.println("Êý¾Ý¿âÁ¬½ÓÒÑ¹Ø±Õ£¡");
+				System.out.println("ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¹Ø±Õ£ï¿½");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -126,51 +126,51 @@ public class SQLHelper {
 	}
 
 	/**
-	 * ½«ÒªÐÞ¶©µÄ°æ±¾µÄÐÅÏ¢Ð´ÈëÊý¾Ý¿â
+	 * ï¿½ï¿½Òªï¿½Þ¶ï¿½ï¿½Ä°æ±¾ï¿½ï¿½ï¿½ï¿½Ï¢Ð´ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½
 	 * 
 	 * @param sql
 	 * @param values
 	 */
 	public void revise(String sql, String[] values) {
 		try {
-			System.out.println("¿ªÊ¼³¢ÊÔÁ¬½ÓÊý¾Ý¿â£¡£¡");
-			String url = properties.getProperty("DB_URL");// 127.0.0.1ÊÇ±¾»úµØÖ·£¬XEÊÇ¾«¼ò°æOracleµÄÄ¬ÈÏÊý¾Ý¿âÃû
-			String user = properties.getProperty("DB_USERNAME");// ÓÃ»§Ãû,ÏµÍ³Ä¬ÈÏµÄÕË»§Ãû
-			String password = properties.getProperty("DB_PASSWORD");// Äã°²×°Ê±Ñ¡ÉèÖÃµÄÃÜÂë
-			con = DriverManager.getConnection(url, user, password);// »ñÈ¡Á¬½Ó
-			// System.out.println("Á¬½Ó³É¹¦£¡£¡");
-			// String sql = ;// Ô¤±àÒëÓï¾ä£¬¡°£¿¡±´ú±í²ÎÊý
-			pre = con.prepareStatement(sql);// ÊµÀý»¯Ô¤±àÒëÓï¾ä
+			System.out.println("ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿â£¡ï¿½ï¿½");
+			String url = properties.getProperty("DB_URL");// 127.0.0.1ï¿½Ç±ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½XEï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Oracleï¿½ï¿½Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½
+			String user = properties.getProperty("DB_USERNAME");// ï¿½Ã»ï¿½ï¿½ï¿½,ÏµÍ³Ä¬ï¿½Ïµï¿½ï¿½Ë»ï¿½ï¿½ï¿½
+			String password = properties.getProperty("DB_PASSWORD");// ï¿½ã°²×°Ê±Ñ¡ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½
+			con = DriverManager.getConnection(url, user, password);// ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½
+			// System.out.println("ï¿½ï¿½ï¿½Ó³É¹ï¿½ï¿½ï¿½ï¿½ï¿½");
+			// String sql = ;// Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			pre = con.prepareStatement(sql);// Êµï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			for (int i = 0; i < values.length; i++) {
-				pre.setString(i + 1, String.valueOf(values[i]));// ÉèÖÃ²ÎÊý£¬Ç°ÃæµÄ1±íÊ¾²ÎÊýµÄË÷Òý£¬¶ø²»ÊÇ±íÖÐÁÐÃûµÄË÷Òý
+				pre.setString(i + 1, String.valueOf(values[i]));// ï¿½ï¿½ï¿½Ã²ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½1ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			}
 			// System.out.println(pre.toString());
-			result = pre.executeQuery();// Ö´ÐÐ²éÑ¯£¬×¢ÒâÀ¨ºÅÖÐ²»ÐèÒªÔÙ¼Ó²ÎÊý?????
+			result = pre.executeQuery();// Ö´ï¿½Ð²ï¿½Ñ¯ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½Òªï¿½Ù¼Ó²ï¿½ï¿½ï¿½?????
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				// ÖðÒ»½«ÉÏÃæµÄ¼¸¸ö¶ÔÏó¹Ø±Õ£¬ÒòÎª²»¹Ø±ÕµÄ»°»áÓ°ÏìÐÔÄÜ¡¢²¢ÇÒÕ¼ÓÃ×ÊÔ´
-				// ×¢Òâ¹Ø±ÕµÄË³Ðò£¬×îºóÊ¹ÓÃµÄ×îÏÈ¹Ø±Õ
+				// ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø±Õ£ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½Ø±ÕµÄ»ï¿½ï¿½ï¿½Ó°ï¿½ï¿½ï¿½ï¿½ï¿½Ü¡ï¿½ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½ï¿½ï¿½ï¿½Ô´
+				// ×¢ï¿½ï¿½Ø±Õµï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ãµï¿½ï¿½ï¿½ï¿½È¹Ø±ï¿½
 				if (result != null)
 					result.close();
 				if (pre != null)
 					pre.close();
 				if (con != null)
 					con.close();
-				System.out.println("Êý¾Ý¿âÁ¬½ÓÒÑ¹Ø±Õ£¡");
+				System.out.println("ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¹Ø±Õ£ï¿½");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 	}
 
-	public static void main(String[] args) throws IOException {
-		@SuppressWarnings("unused")
-		String sql = "select * from HZ_QUERY_SUPPLIERS";
-		String sql2 = "insert into HZ_QUERY_SUPPLIERS t (suppliers_id,t.suppliers_name) values(?,?)";
-		new SQLHelper().executeInsert(sql2, new String[] { "123", "ºÏÖÚÐÂÄÜÔ´Æû³µ" });
-
-	}
+//	public static void main(String[] args) throws IOException {
+//		@SuppressWarnings("unused")
+//		String sql = "select * from HZ_QUERY_SUPPLIERS";
+//		String sql2 = "insert into HZ_QUERY_SUPPLIERS t (suppliers_id,t.suppliers_name) values(?,?)";
+//		new SQLHelper().executeInsert(sql2, new String[] { "123", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½" });
+//
+//	}
 }
