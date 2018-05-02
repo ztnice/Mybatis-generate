@@ -2,7 +2,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:include="include/includebase"></head>
 <link th:href="@{css/sb-admin.css}" rel="stylesheet"/>
-<body >
+<body>
 <div id="wrapper">
 
     <!-- Navigation -->
@@ -14,13 +14,14 @@
         <!-- Top Menu Items -->
         <ul class="nav navbar-right top-nav">
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b
+                        class="caret"></b></a>
                 <ul class="dropdown-menu message-dropdown">
                     <li class="message-preview">
                         <a href="#">
-                            <div class="media" >
+                            <div class="media">
                                     <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="" />
+                                        <img class="media-object" src="http://placehold.it/50x50" alt=""/>
                                     </span>
                                 <div class="media-body">
                                     <h5 class="media-heading"><strong>John Smith</strong>
@@ -35,7 +36,7 @@
                         <a href="#">
                             <div class="media">
                                     <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="" />
+                                        <img class="media-object" src="http://placehold.it/50x50" alt=""/>
                                     </span>
                                 <div class="media-body">
                                     <h5 class="media-heading"><strong>John Smith</strong>
@@ -50,7 +51,7 @@
                         <a href="#">
                             <div class="media">
                                     <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="" />
+                                        <img class="media-object" src="http://placehold.it/50x50" alt=""/>
                                     </span>
                                 <div class="media-body">
                                     <h5 class="media-heading"><strong>John Smith</strong>
@@ -67,14 +68,15 @@
                 </ul>
             </li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <font th:text="${#authentication.name}"></font> <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <font
+                        th:text="${#authentication.name}"></font> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="#" ><i class="fa fa-fw fa-gear"></i> 修改密码 </a>
+                        <a href="#"><i class="fa fa-fw fa-gear"></i> 修改密码 </a>
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="/logout" ><i class="fa fa-fw fa-power-off"></i>退 出</a>
+                        <a href="/logout"><i class="fa fa-fw fa-power-off"></i>退 出</a>
                     </li>
                 </ul>
             </li>
@@ -112,20 +114,21 @@
 -->
 </body>
 <script th:inline="javascript">
-    $(function () {
+    $(document).ready(
+        (function () {
         // 页面加载完成以后开启websocket的连接
         var options = new Array();
         options.sockurl = '/ricky-websocket';
         options.stompClienturl = '/ricky/topic/greetings';
         options.login = [[${#authentication.name}]];
-        options.success = function(greeting){
-            var r = eval("("+JSON.parse(greeting.body).content+")")
-           alert(r);
+        options.success = function (greeting) {
+            var r = eval("(" + JSON.parse(greeting.body).content + ")")
+            alert(r);
             // $("#greetings").append("<tr><td>" + JSON.parse(greeting.body).content + "</td></tr>");
         }
         $.fn.socketConnect(options);
         // 初始化nav
-        $.fn.bootstrapNav({index:'main',navTitle:'合众BOM管理系统'});
+        $.fn.bootstrapNav({index: 'main', navTitle: '合众BOM管理系统'});
         // 初始化标签页
         $("#tabContainer").tabs({
             data: [{
@@ -138,8 +141,9 @@
             loadAll: false
         })
         //
-        $.fn.bootstrapTree({url:"/user/mainTree",treeId:'menu_tree',tabId:"tabContainer"});
+        $.fn.bootstrapTree({url: "/user/mainTree", treeId: 'menu_tree', tabId: "tabContainer"});
         $.fn.dictUtil("/dict/loadDict");
-    });
+    })
+    );
 </script>
 </html>

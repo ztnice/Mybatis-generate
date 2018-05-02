@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * Created by Administrator on 2017/9/19 0019.
  */
-@Mapper(componentModel = "spring")
 public interface TreeMapper {
 
     @Mapping(source = "id", target = "id")

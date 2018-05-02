@@ -16,4 +16,5 @@ public class CsdndemoApplication extends SpringBootServletInitializer {
 	public static void main(String[] args) {
 		SpringApplication.run(CsdndemoApplication.class, args);
 	}
+
 }
