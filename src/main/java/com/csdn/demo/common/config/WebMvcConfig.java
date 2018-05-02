@@ -32,7 +32,8 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		// 数据字典页面
 		registry.addViewController("/dictList").setViewName("/sys/dict/dictList");
 		// 注册bom视图
-		registry.addViewController("/bom").setViewName("bom");
+		registry.addViewController("/bom").setViewName("/stage/bom");
+		registry.addViewController("/bom-treegrid").setViewName("/stage/bom-treegrid");
 	}
 
 }

@@ -106,7 +106,7 @@ public class LoadBomDataController {
 	// 是返回值，否则会返回一个网页
 	public String getLineRecord_3() {
 		System.out.println("------开始-----");
-		return "stage/bom";
+		return "treegrid";
 	}
 
 //	public static void main(String[] args) {
