@@ -65,6 +65,8 @@ public class SocketSessionRegistry{
             // 当最迟登陆的时间和当前时间的年月日不匹配的时候清空session缓存
             User userLogin = UserInfo.getUser();
             if(userLogin!=null){
+                if(null==userLogin.getLastLoginDate())
+                    userLogin.setLastLoginDate(new Date());
                 if(!DateUtil.format(userLogin.getLastLoginDate(), DatePattern.NORM_DATE_FORMAT).equalsIgnoreCase(DateUtil.format(new Date(), DatePattern.NORM_DATE_FORMAT))){
                     set = new CopyOnWriteArraySet();
                     this.userSessionIds.put(user, (Set<String>) set);
