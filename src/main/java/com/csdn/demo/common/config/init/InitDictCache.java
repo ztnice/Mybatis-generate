@@ -30,10 +30,10 @@ public class InitDictCache implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-           logger.info("-------------初始化数据字典-------------");
+           logger.info("--------------------------");
            // 加载所有的数据字典的数据
 //           List<Dict> dictList = dictDao.loadAll();
 //           DictCache.load(dictList);
-           logger.info("-------------完成数据字典初始化-------------");
+           logger.info("-------------------------");
     }
 }

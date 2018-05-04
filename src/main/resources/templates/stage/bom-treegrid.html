@@ -1,14 +1,11 @@
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:include="include/ofbom-treegrid">
     <meta charset="UTF-8">
     <title>BOM视图</title>
 </head>
-
-
 <body class="content-body">
 <div class="panel-body">
-    <div class="col-lg-2">
+    <div class="col-lg-4">
         <span class="infoToUser">请输入需要查询的bom数模行ID</span>
         <div class="input-group">
             <input id="text1" class="form-control" type="text" name="doSubmit1"
@@ -21,8 +18,7 @@
         </div>
     </div>
     <div class="content col-lg-12" id="content2">
-        <!--class="table table-hover table-bordered table-striped"-->
-        <table id="table2"></table>
+        <table class="table table-striped tableNormalStyle" id="dataTable"></table>
     </div>
 </div>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -43,75 +39,6 @@
         </div>
     </div>
 </div>
+<script th:src="@{/js/stage/bom-treegrid.js}"></script>
 </body>
-<script>
-    $(document).ready(
-        $("#doSubmit2").click(
-            function () {
-                var $table = $("#table2");
-                $.ajax({
-                    type: "GET",
-                    url: "/loadBom/loadByID4",
-                    success: function (result) {
-                        var xx = JSON.stringify(result);
-                        var yy = JSON.parse(xx);
-                        alert("成功" + yy);
-                        addToTable($table, yy);
-                    },
-                    error: function (result) {
-                        alert("错误" + result);
-                    }
-                });
-            }
-        ),
-        $("#toTree").click(function(){
-            var $table = $("#table2");
-            toTree($table);
-        })
-    )
-
-    function addToTable($table, result) {
-        // $table.bootstrapTable('load', json);
-        $table.bootstrapTable({
-            striped: true,
-            data: result,
-            columns: [
-                {
-                    field: 'ck',
-                    checkbox: true
-                }, {
-                    field: 'name',
-                    title: '名称'
-                }, {
-                    field: 'referred',
-                    title: '简称'
-                }
-            ],
-            idField: 'id',
-            treeShowField: 'name',
-            parentIdField: 'pid',
-            striped: true,
-            showToggle: true,                    //是否显示详细视图和列表视图的切换按钮
-            showColumns: true,                  //是否显示所有的列
-            // showRefresh: true,                  //是否显示刷新按钮
-            search: true,                       //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
-            // pagination: true,                   //是否显示分页（*）
-            // sortable: true,                     //是否启用排序
-            // sortOrder: "asc",                   //排序方式
-            clickToSelect: true,  //点击表格项即可选择
-        });
-        (toTree($table));
-    }
-    function toTree($table){
-        $table.treegrid({
-            initialState: 'collapsed',//收缩
-            treeColumn: 1,//指明第几列数据改为树形is-expander-expandedis-expander-collapsed
-            expanderExpandedClass: 'glyphicon glyphicon-triangle-bottom ',//有关于折叠图标的问题，由于字体集文件无法跨域调用，因此需要将fonts文件夹中的文件放到与bootstrap.xxx.css统计目录下，并修改@font-face的字体集路径
-            expanderCollapsedClass: 'glyphicon glyphicon-triangle-right ',
-            onChange: function () {
-                $table.bootstrapTable('resetWidth');
-            }
-        });
-    }
-</script>
 </html>

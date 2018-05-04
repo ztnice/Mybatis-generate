@@ -29,7 +29,7 @@
 
 }
 .is-expander-collapsed{
-    background-image: url(../collapse.png);
+    background-image: url(collapse.png);
     background-size: 24px;
     background-position:-8px -2px;
     background-repeat:no-repeat;

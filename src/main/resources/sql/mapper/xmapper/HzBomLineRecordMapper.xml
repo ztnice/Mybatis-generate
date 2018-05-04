@@ -59,7 +59,7 @@
 		<include refid="Blob_Column_List" />
 		from HZ_BOM_LINE_RECORD
 		where P_BOM_DIGIFAX_ID =
-		#{bomDigifaxId,jdbcType=VARCHAR}
+		#{bomDigifaxId,jdbcType=VARCHAR} order by P_BOM_ORDER_NUM
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">delete from
 		HZ_BOM_LINE_RECORD
