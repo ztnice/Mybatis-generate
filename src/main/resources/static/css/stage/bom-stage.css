@@ -27,8 +27,8 @@
 }
 
 	.tableNormalStyle tr, tr td {
-		/*border: 1px dashed #CCC;*/
-		color: purple;
+		border: 1px solid #CCC;
+		color: #66CCFF;
 	}
 
 	.tableNormalStyle tr td {

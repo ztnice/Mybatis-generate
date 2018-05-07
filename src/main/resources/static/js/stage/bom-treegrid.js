@@ -1,4 +1,5 @@
 var firstLoad = true;
+var isExpand = false;
 $(document).ready(
     $("#doSubmit2").click(
         function () {
@@ -39,9 +40,18 @@ $(document).ready(
             });
         }
     ),
-    $("#toTree").click(function () {
+    //展开
+    $("#treeExecutor").click(function () {
         var $table = $("#dataTable");
-        toTree($table);
+        if (isExpand) {
+            toTree($table, "collapsed");
+            $("#treeExecutor").text("展开树形结构");
+        }
+        else {
+            toTree($table, "expanded");
+            $("#treeExecutor").text("折叠树形结构");
+        }
+        isExpand = !isExpand;
     })
 //     $('#switch1').bootstrapSwitch({    //初始化按钮
 //             onText: "ON",
@@ -84,14 +94,14 @@ function addToTable($table, result, myColumns) {
         //重新载入数据，清空之前的，用load，用refresh不成功
         $table.bootstrapTable("load", result);
     }
-    toTree($table);
+    toTree($table, "collapsed");
     firstLoad = false;
 
 }
 
-function toTree($table) {
+function toTree($table, isExpand) {
     $table.treegrid({
-        initialState: 'collapsed',//收缩
+        initialState: isExpand,//收缩collapsed展开expanded
         treeColumn: 0,//指明第几列数据改为树形is-expander-expandedis-expander-collapsed
         expanderExpandedClass: 'glyphicon glyphicon-triangle-bottom ',//有关于折叠图标的问题，由于字体集文件无法跨域调用，因此需要将fonts文件夹中的文件放到与bootstrap.xxx.css统计目录下，并修改@font-face的字体集路径
         expanderCollapsedClass: 'glyphicon glyphicon-triangle-right ',
@@ -99,6 +109,4 @@ function toTree($table) {
             $table.bootstrapTable('resetWidth');
         }
     });
-
-
 }
