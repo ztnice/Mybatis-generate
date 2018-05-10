@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head th:include="include/includebase"></head>
+<meta charset="UTF-8">
+<title>Title</title>
+</head>
+<body>
+<input id="text1" class="form-control" type="text" name="doSubmit1"
+       placeholder="请输入需要查找的model" value="9deb81ea-9544-473b-aeb5-d7683c7753c3"/>
+<button id="myButton">请点击</button>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">操作错误</h4>
+            </div>
+            <div class="modal-body">请输入正确的数模层ID</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(
+        $("#myButton").click(function () {
+            var data = $("#text1").val();
+            if (data.length == 0) {
+                $("#myModal").modal('show');
+                return;
+            }
+            $.ajax({
+                url: '/loadBom/loadCfg0BomLineOfModel',
+                type: 'GET',
+                data: {
+                    'bdf': data
+                },
+                success: function (data) {
+                    var _data = JSON.stringify(data);
+                    var _ddd = JSON.parse(_data);
+                    var x = 0;
+                },
+                error: function (info) {
+                    alert(info);
+                }
+
+            });
+        })
+    );
+
+</script>
+</body>
+</html>

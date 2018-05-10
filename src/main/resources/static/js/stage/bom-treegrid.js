@@ -5,6 +5,10 @@ $(document).ready(
         function () {
             var $table = $("#dataTable");
             var bdf = $("#text1").val();
+            if (bdf.length <= 0) {
+                $("#myModal").modal('show');
+                return;
+            }
             $.ajax({
                 type: "GET",
                 url: "/loadBom/loadByID",

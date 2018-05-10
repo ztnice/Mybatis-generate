@@ -3,9 +3,8 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<!--该文件请放到resource下，便于单独读到，不需要配置-->
 	<typeAliases>
-		<typeAlias type="sql.pojo.Suppliers" alias="Suppliers" />
-		<typeAlias type="sql.pojo.SuppliersHistory" alias="SuppliersHistory" />
 	</typeAliases>
 
 	<environments default="development">
@@ -21,19 +20,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	</environments>
 	<!--映射文件：描述某个实体和数据库表的对应关系 -->
 	<mappers>
-		<mapper resource="sql/mapper/xmapper/SuppliersMapper.xml" />
-		<mapper resource="sql/mapper/xmapper/SuppliersHistoryMapper.xml" />
-		<mapper resource="sql/mapper/xmapper/GrantUserMapper.xml" />
-		<mapper resource="sql/mapper/xmapper/HzReleaseRecordMapper.xml" />
-		<mapper resource="sql/mapper/xmapper/HzReleaseFileRecordMapper.xml" />
-		<mapper resource="sql/mapper/xmapper/UserAuthorizationMapper.xml" />
-		<mapper resource="sql/mapper/xmapper/HzAuthorityOfuserMapper.xml" />
-		<mapper resource="sql/mapper/xmapper/HzTempMainRecordMapper.xml" />
-		<mapper resource="sql/mapper/xmapper/HzTempItemRecordMapper.xml" />
-		<mapper resource="sql/mapper/xmapper/HzTempDocumentRecordMapper.xml" />
-		<mapper resource="sql/mapper/xmapper/HzBomMainRecordMapper.xml" />
-		<mapper resource="sql/mapper/xmapper/HzBomLineRecordMapper.xml" />
-		<mapper resource="sql/mapper/xmapper/HzPreferenceSettingMapper.xml" />
-		<mapper resource="sql/mapper/xmapper/HzBom2YEntityMapper.xml" />
+		<mapper resource="sql/mapper/HzPreferenceSettingMapper.xml" />
+		<mapper resource="sql/mapper/bom/xmapper/HzBomMainRecordMapper.xml" />
+		<mapper resource="sql/mapper/bom/xmapper/HzBomLineRecordMapper.xml" />
+		<mapper resource="sql/mapper/cfg/xmapper/HzCfg0BomLineOfModelMapper.xml" />
+		<mapper resource="sql/mapper/cfg/xmapper/HzCfg0ModelDetailMapper.xml" />
 	</mappers>
 </configuration>

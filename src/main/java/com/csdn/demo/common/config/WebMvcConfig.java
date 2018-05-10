@@ -34,6 +34,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		// 注册bom视图
 		registry.addViewController("/bom").setViewName("/stage/bom");
 		registry.addViewController("/bom-treegrid").setViewName("/stage/bom-treegrid");
+		registry.addViewController("/bom-all-cfg").setViewName("/bom/bom-all-cfg");
 	}
 
 }
