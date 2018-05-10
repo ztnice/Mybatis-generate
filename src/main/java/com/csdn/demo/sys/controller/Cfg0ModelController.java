@@ -24,29 +24,25 @@ public class Cfg0ModelController {
         if (baseSQLUtil == null) {
             baseSQLUtil = new BaseSQLUtil();
         }
-
         JSONObject result = new JSONObject();
-
         if (detail == null || (detail.getpModelPuid() == null || "".equals(detail.getpModelPuid()))) {
             result.put("state", false);
-            result.put("msg", "æ²¡æœ‰æ‰¾åˆ°å¯¹åº”çš„è½¦å‹æ¨¡å‹æ•°æ®ï¼Œè¯·é‡æ–°ç¡®è®¤");
+            result.put("msg", "Ã»ÓĞÕÒµ½¶ÔÓ¦µÄ³µĞÍÄ£ĞÍÊı¾İ£¬ÇëÖØĞÂÈ·ÈÏ");
             return result;
         }
-
         HzCfg0ModelDetail fromDBDetail = baseSQLUtil.executeQueryById(detail, "sql.mapper.cfg.i.HzCfg0ModelDetailMapper.selectByModelId");
         StringBuilder sb = new StringBuilder();
         if (fromDBDetail != null) {
             detail.setpModelPuid(fromDBDetail.getpModelPuid());
             detail.setPuid(fromDBDetail.getPuid());
             baseSQLUtil.executeUpdate(detail, "sql.mapper.cfg.i.HzCfg0ModelDetailMapper.update");
-            sb.append("æ›´æ–°");
+            sb.append("¸üĞÂ");
         } else {
             detail.setPuid(UUID.randomUUID().toString());
             baseSQLUtil.executeInsert(detail, "sql.mapper.cfg.i.HzCfg0ModelDetailMapper.insert");
-            sb.append("è®¾ç½®");
+            sb.append("ÉèÖÃ");
         }
-
-        result.put("msg", sb + detail.getpModelName() + "ä¿¡æ¯æˆåŠŸ");
+        result.put("msg", sb + detail.getpModelName() + "ĞÅÏ¢³É¹¦");
         result.put("state", true);
         return result;
     }
@@ -55,41 +51,32 @@ public class Cfg0ModelController {
     private static void saveModelDetailToDB(@NotNull Cfg0ModelController controller) {
         HzCfg0ModelDetail detail = new HzCfg0ModelDetail();
         detail.setpModelPuid("046adedc-09b2-43ca-a49c-a99d47c9fa3e");
-        detail.setpModelName("æ¨¡å‹åç§°");
-        detail.setpModelDesc("æ¨¡å‹æè¿°");
-        detail.setpModelSaleArea("é”€å”®çš„åœ°åŒº");
-        detail.setpModelBrand("å“ç‰Œ");
-        detail.setpModelVehicle("è½¦è¾†");
-        detail.setpModelPlatform("å¹³å°");
-        detail.setpModelMod("è½¦å‹");
-        detail.setpModelAnnual("å¹´å‹");
-        detail.setpModelVersion("ç‰ˆå‹");
-        detail.setpModelTransform("å˜å‹");
-        detail.setpModelDriverPosition("é©¾é©¶ä½ç½®");
-        detail.setpModelMembers("æˆå‘˜æ•°");
-        detail.setpModelShape("è½¦èº«å¤–å½¢");
-        detail.setpModelAnnouncement("å…¬å‘Š");
-        detail.setpModelPowers("åŠ¨åŠ›æ€»æˆ");
-        detail.setpModelCfgVersion("é…ç½®ç‰ˆå‹");
-        detail.setpModelCfgDesc("é…ç½®æè¿°");
-        detail.setpModelTrailNum("è¯•åˆ¶å·S00-0001-00001");
-        detail.setpModelGoodsNum("å•†å“å·");
+        detail.setpModelName("Ä£ĞÍÃû³Æ");
+        detail.setpModelDesc("Ä£ĞÍÃèÊö");
+        detail.setpModelSaleArea("ÏúÊÛµÄµØÇø");
+        detail.setpModelBrand("Æ·ÅÆ");
+        detail.setpModelVehicle("³µÁ¾");
+        detail.setpModelPlatform("Æ½Ì¨");
+        detail.setpModelMod("³µĞÍ");
+        detail.setpModelAnnual("ÄêĞÍ");
+        detail.setpModelVersion("°æĞÍ");
+        detail.setpModelTransform("±äĞÍ");
+        detail.setpModelDriverPosition("¼İÊ»Î»ÖÃ");
+        detail.setpModelMembers("³ÉÔ±Êı");
+        detail.setpModelShape("³µÉíÍâĞÎ");
+        detail.setpModelAnnouncement("¹«¸æ");
+        detail.setpModelPowers("¶¯Á¦×Ü³É");
+        detail.setpModelCfgVersion("ÅäÖÃ°æĞÍ");
+        detail.setpModelCfgDesc("ÅäÖÃÃèÊö");
+        detail.setpModelTrailNum("ÊÔÖÆºÅS00-0001-00001");
+        detail.setpModelGoodsNum("ÉÌÆ·ºÅ");
         controller.saveModelData(detail);
         System.out.println();
     }
 
+    @Deprecated
     public static void main(String[] args) {
-//        IBaseSQLUtil baseSQLUtil = null;
-//        if (baseSQLUtil == null) {
-//            baseSQLUtil = new BaseSQLUtil();
-//        }
-//        List<HzCfg0BomlineOfModel> hzCfg0BomlineOfModels = baseSQLUtil.executeQueryByPass(new HzCfg0BomlineOfModel(), "d050cb5e-2f54-4782-92dc-6cf750e0b066", "sql.mapper.i.bom.HzCfg0BomlineOfModelMapper.selectByDigifaxId");
-//        Set<String> modelName = new HashSet<>();
-//        hzCfg0BomlineOfModels.forEach((model) -> {
-//            modelName.add(model.getObjectName());
-//        });
         Cfg0ModelController controller = new Cfg0ModelController();
-//        test1(controller);
         saveModelDetailToDB(controller);
     }
 }
