@@ -37,21 +37,46 @@
                 return;
             }
             $.ajax({
-                url: '/loadBom/loadCfg0BomLineOfModel',
-                type: 'GET',
-                data: {
-                    'bdf': data
-                },
+                url: '/model/saveModelData',
+                type: 'POST',
+                dataType: "application/json",
+                contentType: "application/json",
+                data:
+                //需要转换为JSON.stringify
+                    JSON.stringify({
+                        "puid": "",
+                        "pModelPuid": "046adedc-09b2-43ca-a49c-a99d47c9fa3e",//模型puid，隐藏域
+                        "pModelName": "模型名称",//模型名
+                        "pModelDesc": "模型描述",//模型描述
+                        "pModelSaleArea": "销售地区",//销售地区
+                        "pModelBrand": "品牌",//品牌
+                        "pModelVehicle": "车辆",//车辆
+                        "pModelPlatform": "平台",//平台
+                        "pModelMod": "车型",//车型
+                        "pModelTransform": "变型",//变型
+                        "pModelAnnual": "年型",//年型
+                        "pModelVersion": "版型",//版型
+                        "pModelDriverPosition": "老司机位置",//老司机位置
+                        "pModelMembers": "乘客位置",//乘客位置
+                        "pModelShape": "车身形式",//车身形式
+                        "pModelAnnouncement": "公告",//公告
+                        "pModelPowers": "动总",//动总
+                        "pModelCfgVersion": "配置版本",//配置版本
+                        "pModelCfgDesc": "配置描述",//配置描述
+                        "pModelTrailNum": "试制号",//试制号
+                        "pModelGoodsNum": "商品号"//商品号
+                    }),
                 success: function (data) {
-                    var _data = JSON.stringify(data);
                     var _ddd = JSON.parse(_data);
-                    var x = 0;
-                },
+                    alert("成功" + _ddd.msg);
+                }
+                ,
                 error: function (info) {
-                    alert(info);
+                    alert("失败" + info.status);
                 }
 
-            });
+            })
+            ;
         })
     );
 
