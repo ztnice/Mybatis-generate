@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <body>
+        <form id="groupForm" role="form" method="post" action="/colorSet/updateWithEntity">
+            <input id="puid" name="puid" type="hidden" value="aasddssd"/>
+            <div class="form-group">
+                <label for="pColorOfSet">色系</label>
+                <input class="form-control" id="pColorOfSet" name="pColorOfSet" type="text" value="asd"
+                />
+            </div>
+            <div class="form-group">
+                <label for="pColorName">颜色名称</label>
+                <input class="form-control" id="pColorName" name="pColorName" type="text" value="asdd"
+                       placeholder="请输入颜色名称"/>
+            </div>
+            <div class="form-group">
+                <label for="pColorCode">颜色代号</label>
+                <input class="form-control" id="pColorCode" name="pColorCode" type="text" value="ddd"
+                       placeholder="请输入颜色代号"/>
+            </div>
+            <div class="form-group">
+                <label for="pColorComment">备注</label>
+                <input class="form-control" id="pColorComment" name="pColorComment" type="text" value="dddsdd"
+                       placeholder="备注"/>
+            </div>
+            <input type="submit" />
+        </form>
+        <button id="okBtn">确定</button>
+        <script th:inline="javascript">
+            $(document).ready(
+                $("#btnOk").click(function () {
+                    $("#groupForm").submit();
+                    window.Ewin.alert({message: '修改数据成功!'});
+                })
+            );
+        </script>
+    </body>
+</html>

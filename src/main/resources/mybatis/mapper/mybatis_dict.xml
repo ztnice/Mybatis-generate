@@ -9,13 +9,18 @@
 		<result property="value" column="value"/>
 		<result property="isLoad" column="is_load"/>
 	</resultMap>
-
+	<sql id="Base_Column_List">
+		code,text,type,value,is_load
+	</sql>
 	<!--根据主键获取对象-->
 	<select id="get" parameterType="com.csdn.demo.sys.entity.Dict" resultMap="DictMap">
 		SELECT id,code,text,type,value,is_load FROM dict 
 		WHERE id=#{id}
 	</select>
-
+	<select id="loadAll" resultMap="DictMap">
+		select <include refid="Base_Column_List"/>
+		from dict
+	</select>
 	<!--保存-->
 	<insert id="save" parameterType="com.csdn.demo.sys.entity.Dict" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO dict(code,text,type,value,is_load)

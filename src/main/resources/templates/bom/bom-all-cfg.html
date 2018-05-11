@@ -39,7 +39,6 @@
             $.ajax({
                 url: '/model/saveModelData',
                 type: 'POST',
-                dataType: "application/json",
                 contentType: "application/json",
                 data:
                 //需要转换为JSON.stringify
@@ -67,14 +66,11 @@
                         "pModelGoodsNum": "商品号"//商品号
                     }),
                 success: function (data) {
-                    var _ddd = JSON.parse(_data);
-                    alert("成功" + _ddd.msg);
-                }
-                ,
+                    alert("成功" + data.msg);
+                },
                 error: function (info) {
                     alert("失败" + info.status);
                 }
-
             })
             ;
         })

@@ -116,34 +116,34 @@
 <script th:inline="javascript">
     $(document).ready(
         (function () {
-        // 页面加载完成以后开启websocket的连接
-        var options = new Array();
-        options.sockurl = '/ricky-websocket';
-        options.stompClienturl = '/ricky/topic/greetings';
-        options.login = [[${#authentication.name}]];
-        options.success = function (greeting) {
-            var r = eval("(" + JSON.parse(greeting.body).content + ")")
-            alert(r);
-            // $("#greetings").append("<tr><td>" + JSON.parse(greeting.body).content + "</td></tr>");
-        }
-        $.fn.socketConnect(options);
-        // 初始化nav
-        $.fn.bootstrapNav({index: 'main', navTitle: '合众BOM管理系统'});
-        // 初始化标签页
-        $("#tabContainer").tabs({
-            data: [{
-                id: '99999999',
-                text: '首页',
-                url: "bom-treegrid",
-                closeable: false
-            }],
-            showIndex: 0,
-            loadAll: false
+            // 页面加载完成以后开启websocket的连接
+            var options = new Array();
+            options.sockurl = '/ricky-websocket';
+            options.stompClienturl = '/ricky/topic/greetings';
+            options.login = [[${#authentication.name}]];
+            options.success = function (greeting) {
+                var r = eval("(" + JSON.parse(greeting.body).content + ")")
+                alert(r);
+                // $("#greetings").append("<tr><td>" + JSON.parse(greeting.body).content + "</td></tr>");
+            }
+            $.fn.socketConnect(options);
+            // 初始化nav
+            $.fn.bootstrapNav({index: 'main', navTitle: '合众BOM管理系统'});
+            // 初始化标签页
+            $("#tabContainer").tabs({
+                data: [{
+                    id: '99999999',
+                    text: '首页',
+                    url: "colorSet",
+                    closeable: false
+                }],
+                showIndex: 0,
+                loadAll: false
+            })
+            //
+            $.fn.bootstrapTree({url: "/user/mainTree", treeId: 'menu_tree', tabId: "tabContainer"});
+            $.fn.dictUtil("/dict/loadDict");
         })
-        //
-        $.fn.bootstrapTree({url: "/user/mainTree", treeId: 'menu_tree', tabId: "tabContainer"});
-        $.fn.dictUtil("/dict/loadDict");
-    })
     );
 </script>
 </html>

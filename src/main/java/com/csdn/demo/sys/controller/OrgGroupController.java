@@ -56,7 +56,8 @@ public class OrgGroupController extends GenericController<OrgGroup,QueryOrgGroup
         entity = userService.get(entity);
         entity.setRoleArray(JsonHelper.list2json( Optional.ofNullable(userService.findByLogin(entity.getLogin())).filter(u->u!=null).orElse(new User()).getRoles()));
         model.addAttribute("entity",entity);
-        return getPageBaseRoot()+"/updateUser";
+        String page=getPageBaseRoot()+"/addUser";
+        return page;
     }
 
     /**
@@ -65,7 +66,8 @@ public class OrgGroupController extends GenericController<OrgGroup,QueryOrgGroup
      * */
     @RequestMapping(value="/addUserPage")
     public String addUserPage() throws Exception{
-        return getPageBaseRoot()+"/addUser";
+        String page=getPageBaseRoot()+"/addUser";
+        return page;
     }
 
     @Override
