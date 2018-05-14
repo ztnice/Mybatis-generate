@@ -31,6 +31,10 @@ $(document).ready(
                 alert(info.status);
             }
         });
+    }),
+    $("#refreshColorSet").click(function () {
+        alert("手动刷新");
+        $('#dataTable').bootstrapTable('refresh', {url: '/colorSet/queryAll'});
     })
 );
 
@@ -49,6 +53,7 @@ function addToTable($table, result, myColumns) {
             sortable: true,                     //是否启用排序
             sortOrder: "asc",                   //排序方式
             clickToSelect: true,// 单击某一行的时候选中某一条记录
+            cache: false,
             toolbars: [
                 {
                     text: '添加',
@@ -74,7 +79,7 @@ function addToTable($table, result, myColumns) {
                         }
                         window.Ewin.dialog({
                             title: "修改",
-                            url: "colorSet/update",
+                            url: "colorSet/update?puid=" + rows[0].hide,
                             gridId: "gridId",
                             width: 300,
                             height: 400
@@ -90,7 +95,9 @@ function addToTable($table, result, myColumns) {
                             window.Ewin.alert({message: '请选择一条需要删除的数据!'});
                             return false;
                         }
+                        var ddd = JSON.parse(rows);
                         window.Ewin.confirm({title: '提示', message: '是否要删除您所选择的记录？', width: 500}).on(function (e) {
+                            alert(e);
                             if (e) {
                                 $.post("user/removeBath", {json: JSON.stringify(rows)}, function (e) {
                                     if (e.result) {

@@ -11,6 +11,11 @@
     <sql id="Base_Column_List">
     PUID, P_COLOR_OF_SET, P_COLOR_NAME, P_COLOR_CODE, P_COLOR_COMMENT
   </sql>
+    <select id="selectByPrimaryKey" parameterType="sql.pojo.cfg.HzCfg0ColorSet" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from HZ_CFG0_COLORSET where PUID=#{puid,jdbcType=VARCHAR}
+    </select>
     <select id="selectAll" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

@@ -179,7 +179,6 @@ public class LoadBomDataController {
     }
 
 
-
     public static void main(String[] args) {
 //        IBaseSQLUtil baseSQLUtil = null;
 //        if (baseSQLUtil == null) {
