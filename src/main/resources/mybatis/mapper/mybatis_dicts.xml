@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.csdn.demo.sys.dao.DictsDao">
-	<resultMap type="com.csdn.demo.sys.entity.Dicts" id="DictsMap">
+<mapper namespace="com.connor.hozon.bom.sys.dao.DictsDao">
+	<resultMap type="com.connor.hozon.bom.sys.entity.Dicts" id="DictsMap">
 		<id property="id" column="id"/>
 		<result property="code" column="code"/>
 		<result property="text" column="text"/>
@@ -11,30 +11,30 @@
 	</resultMap>
 
 	<!--根据主键获取对象-->
-	<select id="get" parameterType="com.csdn.demo.sys.entity.Dicts" resultMap="DictsMap">
+	<select id="get" parameterType="com.connor.hozon.bom.sys.entity.Dicts" resultMap="DictsMap">
 		SELECT id,code,text,type,value,is_load FROM dict 
 		WHERE id=#{id}
 	</select>
 
 	<!--保存-->
-	<insert id="save" parameterType="com.csdn.demo.sys.entity.Dicts" useGeneratedKeys="true" keyProperty="id">
+	<insert id="save" parameterType="com.connor.hozon.bom.sys.entity.Dicts" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO dict(code,text,type,value,is_load)
 		VALUES(#{code},#{text},#{type},#{value},#{isLoad})
 	</insert>
 
 	<!--修改-->
-	<update id="update" parameterType="com.csdn.demo.sys.entity.Dicts">
+	<update id="update" parameterType="com.connor.hozon.bom.sys.entity.Dicts">
 		UPDATE dict SET code=#{code},text=#{text},type=#{type},value=#{value},is_load=#{isLoad}
 		WHERE id=#{id}
 	</update>
 
 	<!--删除-->
-	<delete id="delete" parameterType="com.csdn.demo.sys.entity.Dicts">
+	<delete id="delete" parameterType="com.connor.hozon.bom.sys.entity.Dicts">
 		 DELETE FROM dict WHERE id=#{id}
 	</delete>
 
 	<!--分页查询-->
-	<select id="findByPage" parameterType="com.csdn.demo.sys.entity.QueryDict" resultMap="DictsMap">
+	<select id="findByPage" parameterType="com.connor.hozon.bom.sys.entity.QueryDict" resultMap="DictsMap">
 		SELECT id,code,text,type,value,is_load FROM dict
 		WHERE 1=1
 		<if test="code!=null and code!='' "  >
@@ -59,7 +59,7 @@
 	</select>
 
 	<!--统计-->
-	<select id="count" parameterType="com.csdn.demo.sys.entity.QueryDict" resultType="int">
+	<select id="count" parameterType="com.connor.hozon.bom.sys.entity.QueryDict" resultType="int">
 		SELECT count(*) FROM dict
 		WHERE 1=1
 		<if test="code!=null and code!='' ">
@@ -80,7 +80,7 @@
 	</select>
 
 	<!--查询-->
-	<select id="query" parameterType="com.csdn.demo.sys.entity.QueryDict" resultMap="DictsMap">
+	<select id="query" parameterType="com.connor.hozon.bom.sys.entity.QueryDict" resultMap="DictsMap">
 		SELECT id,code,text,type,value,is_load FROM dict
 		WHERE 1=1
 		<if test="code!=null and code!='' ">

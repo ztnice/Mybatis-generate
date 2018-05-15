@@ -77,4 +77,12 @@ public interface IBaseSQLUtil {
      * @return
      */
     <T> int executeDelete(List<T> ts, String by);
+
+    /**
+     * 查询数据 返回list
+     * @param sqlMapId
+     * @param param
+     * @return
+     */
+    List findForList(final String sqlMapId, final Object param);
 }

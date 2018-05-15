@@ -173,4 +173,27 @@ public class BaseSQLUtil implements IBaseSQLUtil {
         }
         return result;
     }
+
+    public List findForList(final String sqlMapId, final Object param) {
+        SqlSession session = null;
+        List result = null;
+        try {
+            SqlSessionFactory f = FactoryManager.getInstance();
+            session = f.openSession();
+            System.out.println("Ö´ÐÐsql·½·¨:" + sqlMapId);
+            if (param == null) {
+                result = session.selectList(sqlMapId);
+            } else {
+                result = session.selectList(sqlMapId, param);
+            }
+            // session.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            // session.rollback(true);
+        } finally {
+            if (session != null)
+                session.close();
+        }
+        return result;
+    }
 }
