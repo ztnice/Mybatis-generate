@@ -21,7 +21,7 @@ public class STOMPConnectEventListener  implements ApplicationListener<SessionCo
         //login get from browser
         String agentId = sha.getNativeHeader("login").get(0);
         String sessionId = sha.getSessionId();
-        System.out.println("接收的sessionId是："+sessionId);
+        System.out.println("receive sessionId："+sessionId);
         webAgentSessionRegistry.registerSessionId(agentId,sessionId);
     }
 

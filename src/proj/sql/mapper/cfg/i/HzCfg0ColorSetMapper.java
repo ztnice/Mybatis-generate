@@ -11,5 +11,7 @@ public interface HzCfg0ColorSetMapper {
 
     HzCfg0ColorSet selectByPrimaryId(HzCfg0ColorSet entity);
 
+    int deleteByBatch(List<HzCfg0ColorSet> sets);
+
     int updateByPrimaryKey(HzCfg0ColorSet record);
 }

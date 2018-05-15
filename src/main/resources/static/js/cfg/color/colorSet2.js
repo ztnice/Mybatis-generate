@@ -32,7 +32,8 @@ $(document).ready(
                     iconCls: 'glyphicon glyphicon-pencil',
                     handler: function () {
                         var rows = $table.bootstrapTable('getSelections');
-                        if (rows.length == 0 || rows.length > 1) {
+                        //只能选一条
+                        if (rows.length != 1) {
                             window.Ewin.alert({message: '请选择一条需要修改的数据!'});
                             return false;
                         }
@@ -54,20 +55,21 @@ $(document).ready(
                             window.Ewin.alert({message: '请选择一条需要删除的数据!'});
                             return false;
                         }
-                        var obj = {
-                            "puid": rows[0].puid,
-                            "pColorOfSet": rows[0].pColorOfSet,
-                            "pColorName": rows[0].pColorName,
-                            "pColorCode": rows[0].pColorCode,
-                            "pColorComment": rows[0].pColorComment,
-                        };
-                        var array = [];
-                        array.push(obj);
-                        array.push(obj);
-                        var data = JSON.stringify(array);
+                        //测试数据
+                        // var obj = {
+                        //     "puid": rows[0].puid,
+                        //     "pColorOfSet": rows[0].pColorOfSet,
+                        //     "pColorName": rows[0].pColorName,
+                        //     "pColorCode": rows[0].pColorCode,
+                        //     "pColorComment": rows[0].pColorComment,
+                        // };
+                        // var array = [];
+                        // array.push(obj);
+                        // array.push(obj);
+                        // var data = JSON.stringify(array);
                         //data = data.replace(new RegExp('\\"', "gm"), '"');
+                        //测试数据
                         window.Ewin.confirm({title: '提示', message: '是否要删除您所选择的记录？', width: 500}).on(function (e) {
-                            alert(e);
                             if (e) {
                                 $.ajax({
                                     type: "POST",
@@ -76,20 +78,24 @@ $(document).ready(
                                     contentType: "application/json",
                                     success: function (result) {
                                         if (result.status) {
-                                            window.Ewin.alert({message: "删除数据成功"});
-                                            $table.bootstrapTable("refresh");
+                                            window.Ewin.alert({message: result.msg});
+                                            //刷新，会重新申请数据库数据
                                         }
+                                        else {
+                                            window.Ewin.alert({message: "操作删除失败:" + result.msg});
+                                        }
+                                        $table.bootstrapTable("refresh");
                                     },
                                     error: function (info) {
-                                        alert(info.status);
+                                        window.Ewin.alert({message: "操作删除:" + info.status});
                                     }
-
                                 })
                             }
                         });
                     }
                 }
             ],
+            /**列信息，需要预先定义好*/
             columns: [
                 {
                     field: 'ck',

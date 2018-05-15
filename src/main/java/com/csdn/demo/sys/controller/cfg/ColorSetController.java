@@ -83,17 +83,18 @@ public class ColorSetController {
 
     @RequestMapping(value = "/updateWithEntity", method = RequestMethod.POST)
     @ResponseBody
-    public String update(@RequestBody HzCfg0ColorSet set) {
+    public Boolean update(@RequestBody HzCfg0ColorSet set) {
         int result = baseSQLUtil.executeUpdate(set, "sql.mapper.cfg.i.HzCfg0ColorSetMapper.updateByPrimaryKey");
         if (result == 1)
-            return "ok";
-        else return "fail";
+            return true;
+        else return false;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public String add(@RequestBody HzCfg0ColorSet set) {
-        int result = 0;
+    public JSONObject add(@RequestBody HzCfg0ColorSet set) {
+        JSONObject result = new JSONObject();
+        int resultFromDB;
         if (set.getPuid() == null || "".equals(set.getPuid())) {
             set.setPuid(UUID.randomUUID().toString());
         }
@@ -101,24 +102,41 @@ public class ColorSetController {
         while (true) {
             HzCfg0ColorSet entity = baseSQLUtil.executeQueryById(set, "sql.mapper.cfg.i.HzCfg0ColorSetMapper.selectByPrimaryKey");
             if (entity == null) {
-                result = baseSQLUtil.executeUpdate(set, "sql.mapper.cfg.i.HzCfg0ColorSetMapper.insert");
+                resultFromDB = baseSQLUtil.executeUpdate(set, "sql.mapper.cfg.i.HzCfg0ColorSetMapper.insert");
                 break;
             } else {
                 set.setPuid(UUID.randomUUID().toString());
             }
         }
-        if (result == 1)
-            return "ok";
-        else return "fail";
+        if (resultFromDB == 1) {
+            result.put("status", true);
+            result.put("msg", "新增颜色数据:" + set.getpColorName() + "成功");
+        } else {
+            result.put("status", false);
+            result.put("msg", "新增颜色数据:" + set.getpColorName() + "失败,请联系系统管理员");
+        }
+
+        return result;
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
-    public String delete(@RequestBody List<HzCfg0ColorSet> set) {
-        int result = 0;
-        if (result == 1)
-            return "ok";
-        else return "fail";
+    public JSONObject delete(@RequestBody List<HzCfg0ColorSet> set) {
+        JSONObject result = new JSONObject();
+        StringBuilder sb = new StringBuilder();
+        set.forEach(_set ->
+                sb.append(_set.getpColorName() + ", ")
+        );
+        int resultFromDB;
+        resultFromDB = baseSQLUtil.executeDelete(set, "sql.mapper.cfg.i.HzCfg0ColorSetMapper.deleteByBatch");
+        if (resultFromDB >= 1) {
+            result.put("status", true);
+            result.put("msg", "删除颜色信息数据:" + sb + "已成功");
+        } else {
+            result.put("status", false);
+            result.put("msg", "删除颜色信息数据:" + sb + "已失败");
+        }
+        return result;
     }
 
     public static void main(String[] args) {

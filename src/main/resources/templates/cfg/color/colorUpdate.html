@@ -85,12 +85,12 @@
                             url: url,
                             data: myData,
                             success:
-                                function (info) {
+                                function (result) {
                                     $('.modal-dialog', window.top.document).parent('div').remove()
                                     $('body', window.top.document).find('.modal-backdrop').remove();
                                     // jquery 调用刷新当前操作的table页面的refresh方法
                                     $(window.parent.document).contents().find(".tab-pane.fade.active.in iframe")[0].contentWindow.doQuery();
-                                    if (info == "ok")
+                                    if (result)
                                         window.Ewin.alert({message: '修改数据成功!'});
                                     else
                                         window.Ewin.alert({message: '修改数据失败!'});
