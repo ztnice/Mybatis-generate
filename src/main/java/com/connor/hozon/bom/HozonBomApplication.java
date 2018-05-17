@@ -6,15 +6,15 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class CsdndemoApplication extends SpringBootServletInitializer {
+public class HozonBomApplication extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(CsdndemoApplication.class);
+		return application.sources(HozonBomApplication.class);
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(CsdndemoApplication.class, args);
+		SpringApplication.run(HozonBomApplication.class, args);
 	}
 
 }
