@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class PropertyLoader {
-	/** 属性文件放在当前包下面即可，如果FTP服务器的位置改变了，需要改属性文件 */
 	private final static String filePath = "redis.properties";
 	private Properties Properties;
 
@@ -17,7 +16,6 @@ public class PropertyLoader {
 		}
 	}
 
-	/** 默认属性文件 */
 	private boolean defaultLoader() throws IOException {
 		Properties = new Properties();
 		InputStream in = null;

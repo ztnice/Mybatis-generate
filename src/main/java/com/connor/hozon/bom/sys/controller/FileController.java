@@ -21,7 +21,7 @@ import java.util.UUID;
 * @auther linzf
 * @create 2017/8/24 0024
 */
-@Controller
+//@Controller
 public class FileController {
 
     private static final Logger logger = LoggerFactory.getLogger(FileController.class);

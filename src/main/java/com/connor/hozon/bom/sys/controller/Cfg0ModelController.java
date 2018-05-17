@@ -27,7 +27,7 @@ public class Cfg0ModelController {
         JSONObject result = new JSONObject();
         if (detail == null || (detail.getpModelPuid() == null || "".equals(detail.getpModelPuid()))) {
             result.put("state", false);
-            result.put("msg", "没有找到对应的车型模型数据，请重新确认");
+            result.put("msg", "it seem don't has the model data,please contact with the administrator");
             return result;
         }
         HzCfg0ModelDetail fromDBDetail = baseSQLUtil.executeQueryById(detail, "sql.mapper.cfg.i.HzCfg0ModelDetailMapper.selectByModelId");
@@ -36,13 +36,13 @@ public class Cfg0ModelController {
             detail.setpModelPuid(fromDBDetail.getpModelPuid());
             detail.setPuid(fromDBDetail.getPuid());
             baseSQLUtil.executeUpdate(detail, "sql.mapper.cfg.i.HzCfg0ModelDetailMapper.update");
-            sb.append("更新");
+            sb.append("update");
         } else {
             detail.setPuid(UUID.randomUUID().toString());
             baseSQLUtil.executeInsert(detail, "sql.mapper.cfg.i.HzCfg0ModelDetailMapper.insert");
-            sb.append("设置");
+            sb.append("record");
         }
-        result.put("msg", sb + detail.getpModelName() + "信息成功");
+        result.put("msg", sb + detail.getpModelName() + "success");
         result.put("state", true);
         return result;
     }
@@ -51,25 +51,25 @@ public class Cfg0ModelController {
     private static void saveModelDetailToDB(@NotNull Cfg0ModelController controller) {
         HzCfg0ModelDetail detail = new HzCfg0ModelDetail();
         detail.setpModelPuid("046adedc-09b2-43ca-a49c-a99d47c9fa3e");
-        detail.setpModelName("模型名称");
-        detail.setpModelDesc("模型描述");
-        detail.setpModelSaleArea("销售的地区");
-        detail.setpModelBrand("品牌");
-        detail.setpModelVehicle("车辆");
-        detail.setpModelPlatform("平台");
-        detail.setpModelMod("车型");
-        detail.setpModelAnnual("年型");
-        detail.setpModelVersion("版型");
-        detail.setpModelTransform("变型");
-        detail.setpModelDriverPosition("驾驶位置");
-        detail.setpModelMembers("成员数");
-        detail.setpModelShape("车身外形");
-        detail.setpModelAnnouncement("公告");
-        detail.setpModelPowers("动力总成");
-        detail.setpModelCfgVersion("配置版型");
-        detail.setpModelCfgDesc("配置描述");
-        detail.setpModelTrailNum("试制号S00-0001-00001");
-        detail.setpModelGoodsNum("商品号");
+        detail.setpModelName("setpModelName");
+        detail.setpModelDesc("setpModelDesc");
+        detail.setpModelSaleArea("setpModelSaleArea");
+        detail.setpModelBrand("setpModelBrand");
+        detail.setpModelVehicle("setpModelVehicle");
+        detail.setpModelPlatform("setpModelPlatform");
+        detail.setpModelMod("setpModelMod");
+        detail.setpModelAnnual("setpModelAnnual");
+        detail.setpModelVersion("setpModelVersion");
+        detail.setpModelTransform("setpModelTransform");
+        detail.setpModelDriverPosition("setpModelDriverPosition");
+        detail.setpModelMembers("setpModelMembers");
+        detail.setpModelShape("setpModelShape");
+        detail.setpModelAnnouncement("setpModelAnnouncement");
+        detail.setpModelPowers("setpModelPowers");
+        detail.setpModelCfgVersion("setpModelCfgVersion");
+        detail.setpModelCfgDesc("setpModelCfgDesc");
+        detail.setpModelTrailNum("setpModelTrailNum");
+        detail.setpModelGoodsNum("setpModelGoodsNum");
         controller.saveModelData(detail);
         System.out.println();
     }

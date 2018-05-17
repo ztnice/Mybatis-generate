@@ -72,9 +72,9 @@ public class LoadBomDataController {
                 for (HzCfg0BomLineOfModel model : value) {
                     if (keyOfMap.equals(model.getpBomLineId())) {
                         if (model.getpParseLogicValue() == 1) {
-                            data.put(key, "°Ò");
+                            data.put(key, "‚óè");
                         } else {
-                            data.put(key, "°");
+                            data.put(key, "‚óã");
                         }
                         break;
                     } else {
@@ -127,11 +127,11 @@ public class LoadBomDataController {
                 String[] appendLocalName = new String[localName.length + appendCount];
                 String[] appendTrueName = new String[trueName.length + appendCount];
 
-//                appendLocalName[0] = "–Ú∫≈";
-//                appendLocalName[1] = "À≥–Ú∫≈";
+//                appendLocalName[0] = "Â∫èÂè∑";
+//                appendLocalName[1] = "À≥È°∫Â∫èÂè∑";
 //                appendLocalName[2] = "ID";
-//                appendLocalName[3] = "∏∏≤„ID";
-//                appendLocalName[4] = " «∑Ò «2Y≤„";
+//                appendLocalName[3] = "Áà∂Â±ÇID";
+//                appendLocalName[4] = "ÊòØÂê¶ÊòØ2YÂ±Ç";
 //
 //                appendTrueName[0] = "index";
 //                appendTrueName[1] = "on";

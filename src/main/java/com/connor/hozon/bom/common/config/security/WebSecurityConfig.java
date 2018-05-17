@@ -14,16 +14,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * 实现Security的配置
  */
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled=true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
-    UserDetailsService customUserService(){
+    UserDetailsService customUserService() {
         return new CustomUserService();
     }
 
     @Bean
-    PasswordEncoder passwordEncoder(){
+    PasswordEncoder passwordEncoder() {
         return new CustomPasswordEncoder();
     }
 
@@ -40,6 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * 描述：csrf().disable()为了关闭跨域访问的限制，若不关闭则websocket无法与后台进行连接
+     *
      * @param http
      * @throws Exception
      */
@@ -50,14 +51,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/main")
-                .failureUrl("/login?Error=true")
-                .permitAll()
+                .loginPage("/login").permitAll()
+                .defaultSuccessUrl("/main").permitAll()
+                .failureUrl("/login?error=true").permitAll()
                 .and()
-                .logout()
-                .logoutSuccessUrl("/login").
-                permitAll();
+                .logout().logoutSuccessUrl("/login").permitAll();
     }
 
 }

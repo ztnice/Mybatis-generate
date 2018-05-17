@@ -32,7 +32,7 @@ public class HzCfg0BomLineOfModel {
 
     public static final String[] selfDesc =
             {
-                    "ÏµÍ³", "×Ü³ÉÁã¼şºÅ", "×Ü³ÉÁã¼şÃû³Æ", "×Ü³ÉÓ¢ÎÄÃû³Æ", "ÅäÖÃ(ÃèÊö)", "ÅäÖÃ´úÂë", "±¸×¢"
+                    "ç³»ç»Ÿ", "æ€»æˆé›¶ä»¶å·", "æ€»æˆé›¶ä»¶åç§°", "æ€»æˆè‹±æ–‡åç§°", "é…ç½®(æè¿°)", "é…ç½®ä»£ç ", "å¤‡æ³¨"
             };
 
     public void setObjectName(String objectName) {

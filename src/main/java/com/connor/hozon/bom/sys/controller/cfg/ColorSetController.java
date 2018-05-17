@@ -32,7 +32,7 @@ public class ColorSetController {
         }
         JSONArray result = new JSONArray();
         String[] orgName = new String[]{"colorOfSet", "colorName", "colorCode", "comment", "hide"};
-        String[] localName = new String[]{"色系", "颜色名称", "颜色代码", "备注", "hide"};
+        String[] localName = new String[]{"colorOfSet", "colorName", "colorCode", "comment", "hide"};
         result.add(0, orgName);
         result.add(1, localName);
 
@@ -67,7 +67,7 @@ public class ColorSetController {
         entity = baseSQLUtil.executeQueryById(entity, "sql.mapper.cfg.i.HzCfg0ColorSetMapper.selectByPrimaryKey");
         if (entity == null) {
             Error error = new Error();
-            error.setMsg("没有找到相关的颜色，请联系系统管理员");
+            error.setMsg("???????????????????????????");
             model.addAttribute("entity", error);
             return "error";
         } else {
@@ -98,7 +98,7 @@ public class ColorSetController {
         if (set.getPuid() == null || "".equals(set.getPuid())) {
             set.setPuid(UUID.randomUUID().toString());
         }
-        //查重插入
+        //???????
         while (true) {
             HzCfg0ColorSet entity = baseSQLUtil.executeQueryById(set, "sql.mapper.cfg.i.HzCfg0ColorSetMapper.selectByPrimaryKey");
             if (entity == null) {
@@ -110,10 +110,10 @@ public class ColorSetController {
         }
         if (resultFromDB == 1) {
             result.put("status", true);
-            result.put("msg", "新增颜色数据:" + set.getpColorName() + "成功");
+            result.put("msg", "???????????:" + set.getpColorName() + "???");
         } else {
             result.put("status", false);
-            result.put("msg", "新增颜色数据:" + set.getpColorName() + "失败,请联系系统管理员");
+            result.put("msg", "???????????:" + set.getpColorName() + "???,????????????");
         }
 
         return result;
@@ -131,10 +131,10 @@ public class ColorSetController {
         resultFromDB = baseSQLUtil.executeDelete(set, "sql.mapper.cfg.i.HzCfg0ColorSetMapper.deleteByBatch");
         if (resultFromDB >= 1) {
             result.put("status", true);
-            result.put("msg", "删除颜色信息数据:" + sb + "已成功");
+            result.put("msg", "?????????????:" + sb + "????");
         } else {
             result.put("status", false);
-            result.put("msg", "删除颜色信息数据:" + sb + "已失败");
+            result.put("msg", "?????????????:" + sb + "?????");
         }
         return result;
     }

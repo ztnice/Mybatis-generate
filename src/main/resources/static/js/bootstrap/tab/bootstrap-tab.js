@@ -4,6 +4,8 @@
  * @author linzf
  * @created 2017/8/10
  * @from billjiang
+ *
+ * 已经把iframe的src写死，造成跨域问题
  */
 (function ($, window, document, undefined) {
     'use strict';
@@ -107,7 +109,7 @@
         for (var i = 0; i < data.length; i++) {
             if (this.options.loadAll || this.options.showIndex == i) {
                 if (data[i].url) {
-                    $("#" + data[i].id).html("<iframe style='width: 100%;height:88%;boxder:none;' frameborder='no' border='0' marginwidth='0' marginheight='0' scrolling='yes' allowtransparency='yes' src='http://127.0.0.1:8080/"+data[i].url+"' ></iframe>");
+                    $("#" + data[i].id).html("<iframe style='width: 100%;height:88%;boxder:none;' frameborder='no' border='0' marginwidth='0' marginheight='0' scrolling='yes' allowtransparency='yes' src='http://192.168.1.124:8888/"+data[i].url+"' ></iframe>");
                     this.stateObj[data[i].id] = true;
                 } else {
                     console.error("id=" + data[i].id + "的tab页未指定url");
@@ -118,7 +120,7 @@
                 (function (id, url) {
                     self.$element.find(".nav-tabs a[href='#" + id + "']").on('show.bs.tab', function () {
                         if (!self.stateObj[id]) {
-                            $("#" + id).html("<iframe style='width: 100%;height:88%;boxder:none;' frameborder='no' border='0' marginwidth='0' marginheight='0' scrolling='yes' allowtransparency='yes' src='http://127.0.0.1:8080/"+url+"' ></iframe>");
+                            $("#" + id).html("<iframe style='width: 100%;height:88%;boxder:none;' frameborder='no' border='0' marginwidth='0' marginheight='0' scrolling='yes' allowtransparency='yes' src='http://192.168.1.124:8888/"+url+"' ></iframe>");
                             self.stateObj[id] = true;
                         }
                     });
@@ -175,7 +177,7 @@
             // div-content
             var div_content_panel = $(this.template.div_content_panel.format(obj.id));
             this.$element.find(".tab-content").append(div_content_panel);
-            $("#" + obj.id).html("<iframe style='width: 100%;height:88%;boxder:none;' frameborder='no' border='0' marginwidth='0' marginheight='0' scrolling='yes' allowtransparency='yes' src='http://127.0.0.1:8080/"+obj.url+"' ></iframe>");
+            $("#" + obj.id).html("<iframe style='width: 100%;height:88%;boxder:none;' frameborder='no' border='0' marginwidth='0' marginheight='0' scrolling='yes' allowtransparency='yes' src='http://192.168.1.124:8888/"+obj.url+"' ></iframe>");
             this.stateObj[obj.id] = true;
 
             if(obj.closeable){

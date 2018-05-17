@@ -1,4 +1,4 @@
-package com.connor.hozon.bom;
+package com.connor.hozon;
 
 /**
  * 其实没什么用

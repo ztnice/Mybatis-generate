@@ -1,4 +1,4 @@
-package com.csdn.demo;
+package com.connor.hozon;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CsdndemoApplicationTests {
+public class HzBomSysApplicationTests {
 
 	@Test
 	public void contextLoads() {
