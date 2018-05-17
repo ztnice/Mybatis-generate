@@ -27,9 +27,8 @@ public class InitDictCache implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        // ��ʼ�������ֵ�
         //List<Dict> dictList = dictDao.loadAll();
         //DictCache.load(dictList);
-        logger.warn("------���Կ�ʼ��------");
+        logger.warn("------初始化成功------");
     }
 }

@@ -10,7 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 public class FactoryManager {
 	static Reader reader = null;
 	public static SqlSessionFactory factory = null;
-	/** 配置文件所在地 */
+	/**where the configuration file path*/
 	public static String resource = "mybatis-config.xml";
 	static {
 		try {

@@ -15,7 +15,7 @@ public class BaseSQLUtil implements IBaseSQLUtil {
         try {
             SqlSessionFactory f = FactoryManager.getInstance();
             session = f.openSession();
-            System.out.println("执行的sql语句为:" + by);
+            System.out.println("execute sql:" + by);
             if (suppliers == null) {
                 result = (T) session.selectOne(by);
             } else {
@@ -39,7 +39,7 @@ public class BaseSQLUtil implements IBaseSQLUtil {
         try {
             SqlSessionFactory f = FactoryManager.getInstance();
             session = f.openSession();
-            System.out.println("执行的sql语句为:" + by);
+            System.out.println("execute sql:" + by);
             if (suppliers == null) {
                 result = session.insert(by);
             } else {
@@ -63,7 +63,7 @@ public class BaseSQLUtil implements IBaseSQLUtil {
         try {
             SqlSessionFactory f = FactoryManager.getInstance();
             session = f.openSession();
-            System.out.println("执行的sql语句为:" + by);
+            System.out.println("execute sql:" + by);
             if (suppliers == null) {
                 result = session.selectList(by);
             } else {
@@ -86,7 +86,7 @@ public class BaseSQLUtil implements IBaseSQLUtil {
         try {
             SqlSessionFactory f = FactoryManager.getInstance();
             session = f.openSession();
-            System.out.println("执行的sql语句为:" + by);
+            System.out.println("execute sql:" + by);
             if (suppliers == null) {
                 result = session.selectList(by);
             } else {
@@ -109,7 +109,7 @@ public class BaseSQLUtil implements IBaseSQLUtil {
         try {
             SqlSessionFactory f = FactoryManager.getInstance();
             session = f.openSession();
-            System.out.println("执行的sql语句为:" + by);
+            System.out.println("execute sql:" + by);
             if (suppliers == null) {
                 result = session.update(by);
             } else {
@@ -133,7 +133,7 @@ public class BaseSQLUtil implements IBaseSQLUtil {
         try {
             SqlSessionFactory f = FactoryManager.getInstance();
             session = f.openSession();
-            System.out.println("执行的sql语句为:" + by);
+            System.out.println("execute sql:" + by);
             if (suppliers == null) {
                 result = session.delete(by);
             } else {
@@ -157,7 +157,7 @@ public class BaseSQLUtil implements IBaseSQLUtil {
         try {
             SqlSessionFactory f = FactoryManager.getInstance();
             session = f.openSession();
-            System.out.println("执行的sql语句为:" + by);
+            System.out.println("execute sql:" + by);
             if (ts == null) {
                 result = session.delete(by);
             } else {
@@ -180,7 +180,7 @@ public class BaseSQLUtil implements IBaseSQLUtil {
         try {
             SqlSessionFactory f = FactoryManager.getInstance();
             session = f.openSession();
-            System.out.println("执行sql方法:" + sqlMapId);
+            System.out.println("execute sql:" + sqlMapId);
             if (param == null) {
                 result = session.selectList(sqlMapId);
             } else {
