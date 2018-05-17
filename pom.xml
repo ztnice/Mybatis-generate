@@ -192,6 +192,12 @@
             <artifactId>springfox-swagger2</artifactId>
             <version>2.6.1</version>
         </dependency>
+    <!-- 引入ojdbc对oracle连接驱动支持-->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc14</artifactId>
+            <version>10.2.0.2.0</version>
+        </dependency>
 
         <dependency>
             <groupId>io.springfox</groupId>
