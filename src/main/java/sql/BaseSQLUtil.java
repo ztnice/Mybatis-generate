@@ -4,18 +4,21 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service("baseSQLUtil")
 public class BaseSQLUtil implements IBaseSQLUtil {
-    @SuppressWarnings({"unchecked"})
+    private static final Logger logger = LoggerFactory.getLogger(BaseSQLUtil.class);
+
     public <T> T executeQueryById(T suppliers, String by) {
         SqlSession session = null;
         T result = null;
         try {
             SqlSessionFactory f = FactoryManager.getInstance();
             session = f.openSession();
-            System.out.println("execute sql:" + by);
+            logger.info("BaseSQLUtil execute sql:" + by);
             if (suppliers == null) {
                 result = (T) session.selectOne(by);
             } else {
@@ -39,7 +42,7 @@ public class BaseSQLUtil implements IBaseSQLUtil {
         try {
             SqlSessionFactory f = FactoryManager.getInstance();
             session = f.openSession();
-            System.out.println("execute sql:" + by);
+            logger.info("BaseSQLUtil execute sql:" + by);
             if (suppliers == null) {
                 result = session.insert(by);
             } else {
@@ -63,7 +66,7 @@ public class BaseSQLUtil implements IBaseSQLUtil {
         try {
             SqlSessionFactory f = FactoryManager.getInstance();
             session = f.openSession();
-            System.out.println("execute sql:" + by);
+            logger.info("BaseSQLUtil execute sql:" + by);
             if (suppliers == null) {
                 result = session.selectList(by);
             } else {
@@ -86,7 +89,7 @@ public class BaseSQLUtil implements IBaseSQLUtil {
         try {
             SqlSessionFactory f = FactoryManager.getInstance();
             session = f.openSession();
-            System.out.println("execute sql:" + by);
+            logger.info("BaseSQLUtil execute sql:" + by);
             if (suppliers == null) {
                 result = session.selectList(by);
             } else {
@@ -109,7 +112,7 @@ public class BaseSQLUtil implements IBaseSQLUtil {
         try {
             SqlSessionFactory f = FactoryManager.getInstance();
             session = f.openSession();
-            System.out.println("execute sql:" + by);
+            logger.info("BaseSQLUtil execute sql:" + by);
             if (suppliers == null) {
                 result = session.update(by);
             } else {
@@ -117,7 +120,9 @@ public class BaseSQLUtil implements IBaseSQLUtil {
             }
             session.commit(true);
         } catch (Exception e) {
-            session.rollback(true);
+            if (session != null) {
+                session.rollback(true);
+            }
             e.printStackTrace();
 
         } finally {
@@ -133,7 +138,7 @@ public class BaseSQLUtil implements IBaseSQLUtil {
         try {
             SqlSessionFactory f = FactoryManager.getInstance();
             session = f.openSession();
-            System.out.println("execute sql:" + by);
+            logger.info("BaseSQLUtil execute sql:" + by);
             if (suppliers == null) {
                 result = session.delete(by);
             } else {
@@ -157,7 +162,7 @@ public class BaseSQLUtil implements IBaseSQLUtil {
         try {
             SqlSessionFactory f = FactoryManager.getInstance();
             session = f.openSession();
-            System.out.println("execute sql:" + by);
+            logger.info("BaseSQLUtil execute sql:" + by);
             if (ts == null) {
                 result = session.delete(by);
             } else {
@@ -174,17 +179,17 @@ public class BaseSQLUtil implements IBaseSQLUtil {
         return result;
     }
 
-    public List findForList(final String sqlMapId, final Object param) {
+    public List findForList(final String sql, final Object param) {
         SqlSession session = null;
         List result = null;
         try {
             SqlSessionFactory f = FactoryManager.getInstance();
             session = f.openSession();
-            System.out.println("execute sql:" + sqlMapId);
+            logger.info("BaseSQLUtil execute sql:" + sql);
             if (param == null) {
-                result = session.selectList(sqlMapId);
+                result = session.selectList(sql);
             } else {
-                result = session.selectList(sqlMapId, param);
+                result = session.selectList(sql, param);
             }
             // session.commit();
         } catch (Exception e) {

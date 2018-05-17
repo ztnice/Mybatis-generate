@@ -1,6 +1,7 @@
 package com.connor.hozon.bom.common.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -41,4 +42,25 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     }
 
+
+    /**
+     * 1、 extends WebMvcConfigurationSupport
+     * <p>
+     * 2、重写下面方法;
+     * <p>
+     * setUseSuffixPatternMatch : 设置是否是后缀模式匹配，如“/user”是否匹配/user.*，默认真即匹配；
+     * <p>
+     * setUseTrailingSlashMatch : 设置是否自动后缀路径模式匹配，如“/user”是否匹配“/user/”，默认真即匹配；
+     * 设置是否是后缀模式匹配，如“/user”是否匹配/user.*，默认真即匹配；
+     * <p>
+     * 当此参数设置为true的时候，那么/user.html，/user.aa，/user.*都能是正常访问的。
+     * <p>
+     * 当此参数设置为false的时候，那么只能访问/user或者/user/( 这个前提是setUseTrailingSlashMatch 设置为true了)。
+     */
+    @Override
+    public void configurePathMatch(PathMatchConfigurer configurer) {
+        configurer.setUseSuffixPatternMatch(false)
+                .setUseTrailingSlashMatch(true);
+        super.configurePathMatch(configurer);
+    }
 }

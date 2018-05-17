@@ -13,7 +13,7 @@ $(function () {
             });
         }
     }
-    $.fn.dictUtil.defaults = {url:"/dict/loadDict"}
+    $.fn.dictUtil.defaults = {url:"/hozon/dict/loadDict"}
 })
 
 dictValueMap= parent.dictValueMap;
