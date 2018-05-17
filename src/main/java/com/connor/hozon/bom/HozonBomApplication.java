@@ -1,4 +1,4 @@
-package com.connor.hozon;
+package com.connor.hozon.bom;
 
 /**
  * Created by IntelliJ IDEA.
@@ -7,5 +7,5 @@ package com.connor.hozon;
  * Time: 19:01
  * To change this template use File | Settings | File Templates.
  */
-public class HozonBomApplicationTest {
+public class HozonBomApplication {
 }

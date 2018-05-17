@@ -5,18 +5,21 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 /**
  * 其实没什么用
- * @author Administrator
  *
+ * @author Administrator
  */
 public class ServletInitializer
 
-	extends SpringBootServletInitializer
+        extends SpringBootServletInitializer
 
-	{
+{
 
-	  @Override protected SpringApplicationBuilder
-	  configure(SpringApplicationBuilder application) { return
-	  application.sources(HozonBomApplication.class); }
+    @Override
+    protected SpringApplicationBuilder
+    configure(SpringApplicationBuilder application) {
+        return
+                application.sources(HzBomSysApplication.class);
+    }
 
 
 }

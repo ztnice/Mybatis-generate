@@ -1,5 +1,6 @@
-package com.connor.hozon;
+package com.connor.hozon.bom;
 
+import com.connor.hozon.HzBomSysApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
